@@ -1,0 +1,457 @@
+\documentclass[11pt,reqno]{article}
+
+
+% fix the Q letter $Q(\varrho)=0$
+
+
+% Packages
+\usepackage{amsmath, amsthm, amsopn, amssymb}
+\usepackage{enumerate, enumitem, tikz, etoolbox, intcalc, geometry, caption, subcaption, afterpage}
+\usepackage[english]{babel}
+\usepackage{mathrsfs, mathtools}
+
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+
+
+% % Margins
+%\setlength{\topmargin}{0in}
+\setlength{\leftmargin}{0in}
+\setlength{\rightmargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\oddsidemargin}{0in}
+
+% Text area size
+\setlength{\textwidth}{6.55in}
+\setlength{\textheight}{9.06in}
+
+
+% Definitions
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{definition}[thm]{Definition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{quest}[thm]{Question}
+\newtheorem{fact}[thm]{Fact}
+\theoremstyle{definition}
+\newtheorem*{remark}{Remark}
+\newtheorem*{remarks}{Remarks}
+\newtheorem*{conj}{Conjecture}
+
+\newcommand{\twopartdef}[4]
+{
+	\left\{
+		\begin{array}{ll}
+			#1 & #2 \\
+			#3 & #4
+		\end{array}
+	\right.
+}
+
+
+\begin{document}
+\section{Introduction}\label{sec:introduction}
+\newcommand*{\mida}{d\mu_{\text{\tiny$\beta$}}(\phi)}
+\newcommand*{\midar}{d\mu_\beta(\phi)}
+
+
+\begin{thm}
+This is a new thm.
+\end{thm}
+
+\begin{thm}[brackets]
+This is a new thm.
+\end{thm}
+Proof: Done!
+
+Add $a$ squared and $b$ squared to get $c$ squared. Or, using a more mathematical approach 
+\begin{equation} 
+a^2 + b^2 = c^2 
+\end{equation} 
+Einstein says 
+\begin{equation} \label{clever}
+E = mc^2 
+\end{equation} 
+He didn’t say 
+\begin{equation} 
+1 + 1 = 3 \tag{dumb}
+\end{equation} 
+
+This is a reference to \eqref{clever}.
+
+\section{Chapter2}\label{sec:chap2}
+\newcommand*{\ens}{\mathscr{N}}
+
+
+
+\section{Chapter3}\label{sec:chap3}
+Let $\mathscr{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$
+
+\subsection{Notation}
+\newcommand*{\SqrsSet}{\mathscr{S}_k(\varrho)}
+\newcommand*{\SqrsSetTag}{\mathscr{S}^\prime_k(\varrho)}
+\newcommand*{\SqrsSetDtag}{\mathscr{S}^{\prime\prime}_k(\varrho)}
+\newcommand*{\SqrsSetGamma}{\mathscr{S}_{\gamma(k)}(\varrho)}
+\newcommand*{\SqrsSetTagGamma}{\mathscr{S}^\prime_{\gamma(k)}(\varrho)}
+\newcommand*{\SqrsSetDtagGamma}{\mathscr{S}^{\prime\prime}_{\gamma(k)}(\varrho)}
+First, denote $b = \frac{\alpha}{2} + 1 + \log_2(M)$. Also, denote $\gamma(k)=[\alpha^{-1}(k-b-2)]$, where $[x]$ denotes the integer part of x. 
+
+Let $\SqrsSet$ be a minimal collection of $2^k\times2^k$ squares covering the support of $\varrho$. By minimal we mean that $\SqrsSet$ is chosen such that its cardinality, $\abs{\SqrsSet}$, is minimal, i.e. 
+$$\abs{\SqrsSet} = A_k(\varrho)$$
+Now we define $\SqrsSetTag$ and $\SqrsSetDtag$.
+First, in the case where $\SqrsSet$ consists of only one square and $Q(\varrho)=0$, we set $\SqrsSetTag=\emptyset$ and $\SqrsSetDtag=\emptyset$.
+In any other case, we define $\SqrsSetTag$ to be the sub-collection of those squares $s^\prime$ in $\SqrsSet$ which are far separated from other squares in $\SqrsSet$, in the sense that $$dist(s^\prime, s)\geq 2M2^{\alpha k + \alpha /2}\equiv2^{\alpha k + b}$$
+for all $s\in\SqrsSet$ ($s\neq s^\prime$), and define $\SqrsSetDtag := \SqrsSet \setminus \SqrsSetTag$.\\
+Denote also 
+\begin{equation} \label{label:ATagDef}
+A^\prime(\varrho) = A_0(\varrho) + \sum_{k=1}^\infty \abs{\SqrsSetTag}
+\end{equation}
+
+\begin{remarks}
+\begin{enumerate}
+\item For $k > log_2 d(\varrho)$, $\SqrsSet$ consists of a single square covering all of $supp(\varrho)$. Hence, if $Q(\varrho) = 0$, we get $\SqrsSetTag=\emptyset$, so that the sum \eqref{label:ATagDef} terminates at some $k=k(\varrho) \leq log_2d(\varrho)$ (and if $\varrho$ is charged, we get $k(\varrho)=\infty$, $\abs{\SqrsSetTag} = 1$, for all $k > log_2 d(\varrho)$).
+\item We note that, by (???? Thm2.1), $s\cap\varrho$ is charged for each $s\in\SqrsSetTag$. This fact will be used later, for the proof of (???????).
+\end{enumerate}
+\end{remarks}
+
+
+
+\subsection{Upper bound on $A(\varrho)$}
+\begin{prop} \label{prop:ABound}
+\begin{equation} \label{label:eq31}
+A(\varrho) \leq D_2 A^\prime(\varrho)
+\end{equation}
+for some finite constant $D_2$ independent of $\varrho$ and $\mathscr{N}$.
+\end{prop}
+
+
+\begin{lemma} \label{lemma:GammaReason}
+\begin{equation} \label{label:GammaRec}
+A_k(\varrho) \leq \frac{1}{2} A_{\gamma(k)}(\varrho) + \abs{\SqrsSetTagGamma}
+\end{equation}
+for k such that $\abs{\SqrsSetGamma} \geq 2$.
+\end{lemma}
+
+\begin{proof}
+Let k be such that $\abs{\SqrsSetGamma} \geq 2$. We claim that $[m/2]$ squares of size $2^k$ are enough to cover $\SqrsSetDtagGamma$, where $m=\abs{\SqrsSetDtagGamma}$.\\
+Let $s_1 \in \SqrsSetDtagGamma$, and let $s_2 \in \SqrsSetDtagGamma$ such that $$dist(s_1, s_2) < 2^{\alpha \gamma(k) + b} \leq 2^{k-b-2 + b} = 2^{k-2}.$$
+Since $d(s_1)=d(s_2)=\sqrt{2} 2^{\gamma(k)}$ and $\gamma(k) \leq k-4$ (since $\gamma(k) < k-3$ for $b>1$, $\alpha > 1$), 
+$$d(s_1) + d(s_2) + dist(s_1, s_2) \leq 2^{\gamma(k) + 2} + 2^{k-2} < 2^{k-1},$$
+and thus $s_1, s_2$ can be covered by a single square in $\SqrsSet$.\\
+Next, let $s_1, \cdots, s_t$, $t \geq 3$ be squares in $\SqrsSetDtagGamma$ such that
+$$dist(s_l, s_{l+1}) < 2^{\alpha \gamma(k) + b}, \qquad l=1,\cdots,t$$
+Then $s_{l-1}, s_l, s_{l+1}$ can be covered by a single $2^k\times2^k$ square, for any $l=2,3,\cdots,t-1$, since
+$$d(s_{l-1}) + d(s_l) + d(s_{l+1}) + dist(s_{l-1}, s_l) + dist(s_l, s_{l+1}) \leq 2^{\gamma(k) + 3} + 2^{k-1} < 2^k.$$
+Therefore, [m/2] $2^k\times2^k$ squares suffice to cover $s_1, \cdots, s_t$ for $t=2,3,\cdots$. So given a cover $\SqrsSetGamma$ of $supp\varrho$, we can replace the squares in $\SqrsSetDtagGamma$ with $[m/2]$ squares of size $2^k\times2^k$, and resize the squares in $\SqrsSetTagGamma$ to be squares of size $2^k\times2^k$, and get a cover of $supp\varrho$ with squares of size $2^k\times2^k$, of size $[m/2] + \abs{\SqrsSetTagGamma}$, and therefore
+\begin{equation} \label{label:lab38}
+A_k(\varrho) = \abs{\SqrsSet} \leq
+\frac{1}{2}\abs{\SqrsSetDtagGamma} + \abs{\SqrsSetTagGamma} \leq
+\frac{1}{2} A_{\gamma(k)}(\varrho) + \abs{\SqrsSetTagGamma}
+\end{equation}
+Note that \eqref{label:lab38} holds only if $\abs{\SqrsSetGamma} \geq 2$, since otherwise $\SqrsSetGamma = \SqrsSetTagGamma \cup \SqrsSetDtagGamma$ isn't true for $Q(\varrho)=0$.
+\end{proof}
+
+\begin{lemma} \label{lemma:GammaCond}
+$\abs{\SqrsSetGamma} \geq 2$ holds for every $k \leq n(\varrho) \leq log_2(Md(\varrho)^\alpha) + 1$.
+\end{lemma}
+\begin{proof}
+For such k, 
+$$\gamma(k) \leq \alpha^{-1}(k-b-2) \leq
+\alpha^{-1}(log_2(M) + \alpha log_2d(\varrho) + 1) - \alpha^{-1}(\alpha/2 + 1 + log_2(M)) - 2\alpha^{-1} \leq $$
+$$log_2d(\varrho) - 2\alpha^{-1} - 1/2 < 
+log_2d(\varrho)-1/2.$$
+Therefore $\sqrt{2}\cdot2^{\gamma(k)} < d(\varrho)$, and so more than one square of size $2^{\gamma(k)}\times2^{\gamma(k)}$ is needed to cover $supp(\varrho)$, and so $\abs{\SqrsSetGamma} > 1$ must hold.
+\end{proof}
+
+\begin{proof}[Proof of Proposition \eqref{prop:ABound}]
+Let $\delta:=b-2$. Clearly, inequality \eqref{label:GammaRec} can only be applied if $\gamma(k) \geq 0$, i.e. $k \geq \delta$. For each $k$, we now iterate inequality \eqref{label:GammaRec} $l=l(k)$ times, where $l(k)$ is the maximal number for which $\gamma^{l(k)}(k) \geq 0$. Here $\gamma^m$ denotes the m-fold composition of $\gamma$ with itself.\\
+Using \eqref{label:GammaRec} iteratively yields
+\begin{equation} \label{label:lab310}
+A_k(\varrho) \leq 
+2^{-l}A_{\gamma^l(k)}(\varrho) + \sum_{m=0}^{l-1} 2^{-m} \abs{\mathscr{S}^\prime_{\gamma^{m+1}(k)}(\varrho)} \leq 
+2^{-l}A_0(\varrho) + \sum_{m=0}^{l-1} 2^{-m} \abs{\mathscr{S}^\prime_{\gamma^{m+1}(k)}(\varrho)}
+\end{equation}
+with $l=l(k)$, and using $A_0(\varrho) \geq A_j(\varrho)$, for all $j \geq 0$.\\
+
+We start by estimating $l(k)$. For this purpose, we extend the definition of $\gamma$ to the whole interval $[\delta, \infty)$, by setting $\gamma(x)=[\alpha^{-1}(x-\delta)]$, for every $x \geq \delta$. Obviously, $\gamma$ is monotone increasing, and
+$$\gamma(x) > \alpha^{-1}(x-\delta)-1.$$
+These two properties yield
+$$\gamma^2(x) = \gamma(\gamma(x)) \geq \gamma(\alpha^{-1}(x-\delta)-1) > 
+\alpha^{-2}x - \alpha^{-2}\delta - \alpha^{-1}\delta - \alpha^{-1} - 1,$$
+and, by induction (assuming that we stay in the interval $[\delta, \infty]$),
+\newcommand*{\alphadelta}{(\alpha-1)^{-1}(\alpha+\delta)}
+$$
+\gamma^m(x) > \alpha^{-m}x - \delta (\sum_{j=1}^m \alpha^{-1}) - \sum_{j=0}^{m-1}\alpha^{-j} \geq
+$$
+$$
+\geq \alpha^{-m}x - (\delta\alpha^{-1}+1)(\sum_{j=0}^\infty\alpha^{-j}) = 
+\alpha^{-m}x - \alphadelta.
+$$
+For $k \geq \alphadelta$, we define $l_0(k)$ to be the maximal integer for which
+\begin{equation} \label{label:eq313}
+\alpha^{-l_0(k)}x - \alphadelta \geq 0.
+\end{equation}
+Then $\gamma^{l_0(k)}(k) > 0$ and therefore $l(k) \geq l_0(k)$. Set $k_0=(\alpha-1)^{-1}(\alpha+\delta)$, and so by taking logarithm in \eqref{label:eq313} we obtain
+\begin{equation} \label{label:eq314}
+l(k) \geq \twopartdef { 0 } {0 \leq k < k_0} {{[\frac{log_2(k/k_0)}{log_2(\alpha)}]}} {otherwise}
+\end{equation}\\
+
+Next, we estimate the cardinality $\abs{N_{m,j}}$ of the sets
+$$
+N_{m,j} := \{k: \gamma^m(k) = j\}
+$$
+As before, we use the monotonicity of $\gamma$ together with $\gamma(x) \leq \alpha^{-1}(x-\delta)$ to obtain
+$$
+\gamma^2(x) \leq \gamma(\alpha^{-1}(x-\delta)) \leq \alpha^{-2}x - \alpha^{-2}\delta - \alpha^{-1}\delta 
+$$
+and again, by induction.
+$$
+\gamma^m(x) \leq \alpha^{-m}-\delta(\sum_{l=1}^m\alpha^{-l})
+$$
+Next, let $k_-$ be the minimal and $k_+$ the maximal integer in $N_{j,m}$ (the maximum exists for every $j,m$, since $\gamma^m(k) > \alpha^{-m}k - k_0 > j$ for every $k>k_1$ for some $k_1$). Then
+$$
+\alpha^{-m}k_+ - \delta(\sum_1^ma^{-l})-\sum_0^{m-1}\alpha^{-l} \leq \gamma^m(k_+) = j = \gamma^m(k_-) \leq \alpha^{-m}k_- - \delta(\sum_1^m\alpha^{-l})
+$$
+and therefore
+\begin{equation} \label{label:lab316}
+\abs{N_{m,j}} = k_+ - k_- + 1 \leq \alpha^m \sum_0^{m-1}\alpha^{-l} + 1 \leq \alpha^m \sum_0^{\infty}\alpha^{-l} + 1 = \alpha^m \frac{\alpha}{\alpha-1} + 1 \leq \alpha^m \frac{2\alpha}{\alpha-1}
+\end{equation}
+for $\alpha > 1$.\\
+
+Now, using \eqref{label:lab310} we have
+\begin{equation} 
+A(\varrho) = \sum_{k=0}^{n(\varrho)}A_k(\varrho) \leq 
+\sum_{k=0}^{n(\varrho)} 2^{-l(k)}A_0(\varrho) + 
+\sum_{k=0}^{n(\varrho)}\sum_{m=0}^{l(k)-1} 2^{-m} \abs{\mathscr{S}^\prime_{\gamma^{m+1}(k)}(\varrho)} .
+\end{equation}
+
+We continue by bounding both terms. First note that by \eqref{label:eq314}
+$$
+\sum_{k=0}^{n(\varrho)} 2^{-l(k)} \leq \sum_{k=0}^{\infty} 2^{-l(k)} \leq k_0 + \sum_{k=k_0+1}^{\infty} 2^{-l(k)} \leq k_0 + \sum_{k=k_0+1}^{\infty}(k_0/k)^{1/log_2(\alpha)} \equiv E < \infty
+$$
+for $1 < \alpha < 2$, i.e. $1/log_2\alpha > 1$. \\
+Let $k(\varrho)$ be the largest k for which $\SqrsSetTag \neq \emptyset$, so using \eqref{label:lab316}
+$$
+\sum_{k=0}^{n(\varrho)}\sum_{m=0}^{l(k)-1} 2^{-m} \abs{\mathscr{S}^\prime_{\gamma^{m+1}(k)}(\varrho)} = 
+$$
+$$
+=\sum_{j=0}^{k(\varrho)} \bigg( \sum_{k=0}^{n(\varrho)}\sum_{m=0}^{l(k)-1} 2^{-m} \delta_{\gamma^{m+1}(k) = j} \bigg) \abs{\mathscr{S}^\prime_{j}(\varrho)} \leq
+$$
+$$
+\leq \sum_{j=0}^{k(\varrho)} \bigg( \sum_{m,k=0}^{\infty} 2^{-m} \delta_{\gamma^{m+1}(k) = j} \bigg) \abs{\mathscr{S}^\prime_{j}(\varrho)} = 
+$$
+$$
+\leq \sum_{j=0}^{k(\varrho)} \bigg( \sum_{m=0}^{\infty} 2^{-m} \abs{N_{m+1,j}} \bigg) \abs{\mathscr{S}^\prime_{j}(\varrho)} \leq
+$$
+$$
+\leq \sum_{j=0}^{k(\varrho)} \bigg( \alpha \frac{2\alpha}{\alpha-1} \sum_{m=0}^{\infty} \big( \frac{\alpha}{2} \big) ^m \bigg) \abs{\mathscr{S}^\prime_{j}(\varrho)} \leq
+$$
+$$
+\leq F\sum_{j=0}^{\infty} \abs{\mathscr{S}^\prime_{j}(\varrho)}
+$$
+where F is some constant such that $\alpha \frac{2\alpha}{\alpha-1} \sum_{m=0}^{\infty} \big( \frac{\alpha}{2} \big) ^m \leq F$, and assuming $1 < \alpha < 2$.\\
+The proposition now follows by setting $D_2 = max(E,F)$.
+\end{proof}
+
+
+\section{Renormalization of Multipole Densities}\label{sec:chap4}
+
+
+
+\subsection{Main Result}
+The main result of the this section is
+\begin{thm} \label{thm:thm41}
+Let $\ens$ be an ensemble satisfying properties (a)-(c) of Theorem (????????). For each $\varrho \in \ens$, let $\sigma(\varrho)$ be some real number. Then
+\begin{equation}
+\int\prod_{\varrho \in \ens}[1 + K(\varrho)cos(\phi(\varrho) + \sigma(\varrho))]\mida = 
+\int\prod_{\varrho \in \ens}[1 + z(\beta,\varrho)cos(\phi(\bar{\varrho}) + \sigma(\varrho))]\mida, 
+\end{equation}
+where
+$$
+z(\beta,\varrho) = K(\varrho)exp[-\beta E_{loc}(\varrho, \ens)]
+$$
+and $E_{loc}(\varrho, \ens)$ is some function of $\varrho$ satisfying 
+\begin{equation}
+E_{loc}(\varrho, \ens) \geq D_1 A^\prime(\varrho).
+\end{equation}
+Moreover, $\bar{\varrho}$ is a charge density which depends linearly on $\varrho$ and satisfies
+\begin{enumerate}[label={\alph*)}]
+\item $Q(\bar{\varrho}) = Q(\varrho)$, and
+\item $d(\bar{\varrho}) \leq 2d(\varrho)$ (unless $\varrho$ is charged, in which case $d(\bar{\varrho}) = \infty, E_{loc}(\varrho, \ens) = \infty$).
+\end{enumerate}
+\end{thm}
+
+\subsection{The Charged Density}
+
+\subsection{First Renormalization Step}
+
+We start by decomposing the support of a charge density $\varrho \in \ens$ into two disjoint subsets $\Omega_1, \Omega_2$, such that no two sites in $\Omega_1$ are nearest neighbours (for example choose it to be sites of $supp\varrho$ on two complementary grids which cover $\mathbb{Z}^2$). Let $\varrho_l(j) = \varrho(j)$, for $h \in \Omega_l$, $\varrho(j)=0$ otherwise, $l=1,2$. Clearly $\varrho_1 + \varrho_2 = \varrho$. We define
+$$
+R_0\varrho(j) := \varrho_2(j) + 1/4\sum_{\abs{k-j}=1}\varrho_1(k).
+$$
+Also, denote $E_0(\varrho) = 1/8\sum\varrho(j)^2$. By an appropriate choice of $\Omega_1$ we have
+\begin{equation} \label{label:lab419}
+E_0(\varrho_1) \geq \frac{1}{2} E_0(\varrho).
+\end{equation}
+
+\begin{remarks}
+It's easy to see that
+\begin{enumerate}
+\item $R_0\varrho(j) = 0$ for $j\in\Omega_1$.
+\item $Q(R_0\varrho) = Q(\varrho)$.
+\end{enumerate}
+\end{remarks}
+
+
+\begin{prop}[First Renormalization Step] \label{prop:lem418}
+Using the notation above
+$$
+\int \prod [1+K(\varrho)cos(\phi(\varrho) + \sigma(\varrho))] \mida = 
+\int \prod [1+K(\varrho)e^{-\beta E_0(\varrho_1)}cos(\phi(R_0\varrho) + \sigma(\varrho))] \mida
+$$
+\end{prop}
+
+
+\begin{lemma} \label{lemma:contour}
+\begin{equation}
+\int e^{i q x} I_\beta(x)dx = \int e^{i q (x+ia)} I_\beta(x+ia)dx
+\end{equation}
+where $I_\beta(x) = exp[-(\beta/2)\phi^2]$, and $a\in \mathbb{R}$.
+\end{lemma}
+\begin{proof}
+Let $b \in (0,\infty)$. First note that 
+$$
+\abs{I_\beta(b+ix)} = \abs{exp(-(\beta/2) (b+ix)^2} = \abs{I_\beta(b)}exp[(\beta/2)x^2].
+$$
+By integrating on a closed contour, we obtain
+$$
+\int_{-b \rightarrow b} e^{i q \omega} I_\beta(\omega)d\omega =
+\int_{-b+ia \rightarrow b+ia} e^{i q \omega} I_\beta(\omega)d\omega + 
+$$
+\begin{equation} \label{label:contour}
+\int_{-b \rightarrow -b+ia} e^{i q \omega} I_\beta(\omega)d\omega +
+\int_{b+ia \rightarrow b} e^{i q \omega} I_\beta(\omega)d\omega.
+\end{equation}
+where we can bound the last two terms by
+$$
+\Bigg| \int_0^a e^{iq(b+ix)}I_\beta(b+ix)dx \Bigg| \leq 
+\int_0^a \Big| e^{iq(b+ix)}I_\beta(b+ix)\Big| dx \leq
+$$
+$$
+\leq max(1, e^{-qa}) I_\beta(b) \int_0^a exp[(\beta/2)x^2] \leq const(a)I_\beta(b)
+$$
+Therefore taking $b\rightarrow\infty$ in \eqref{label:contour} yields the lemma.
+\end{proof}
+
+\begin{lemma} \label{lemma:lem42}
+If $G(\phi)$ is a functional independent of $\phi(j_0)$ then
+\begin{equation}
+\int e^{i q \phi(j_0)} G(\phi)\mida = e^{-\beta q^2/8} \int e^{i q \bar{\phi}(j_0)} G(\phi)\mida
+\end{equation}
+where $\bar{\phi}(j_0)=1/4\sum_{\abs{k-j_0}=1} \phi(k)$.
+\end{lemma}
+\begin{proof}
+The proof follows by explicit integration of the $\phi(j_0)$ variable, using lemma \eqref{lemma:contour}:
+$$
+\int e^{i q \phi(j_0)} exp \Big[ -\frac{1}{2\beta} \sum_{\abs{k-j_0}=1}(\phi(j_0)-\phi(k))^2 \Big] d\phi(j_0) =
+$$
+$$
+\int e^{i q \phi(j_0) - q^2\beta/4} exp \Big[ -\frac{1}{2\beta} \Big( \sum_{\abs{k-j_0}=1}(\phi(j_0)-\phi(k))^2 \Big) - i q \phi(j_0) + iq\bar{\phi}(j_0) + \frac{q^2\beta}{8}\Big] d\phi(j_0)
+$$
+\end{proof}
+
+\begin{proof}[Proof of proposition \eqref{prop:lem418}]
+The proof follows by applying lemma \eqref{lemma:lem42} iteratively.
+First note that for M large enough, $dist(\varrho, \varrho^\prime) \geq 3$ for all $\varrho, \varrho^\prime$ in $\ens$, so that $supp(R_0\varrho) \cap supp(R_0\varrho^\prime) = \emptyset$, for any choice of $\Omega_l(\varrho), \Omega_l(\varrho^\prime)$, $l=1,2$. Thus $\Omega_l(\varrho)$ can be chosen independently of $\Omega_l(\varrho^\prime)$ for $\varrho \neq \varrho^\prime$ such that \eqref{label:lab419} holds for all $\varrho \in \ens$.\\
+Now, for every $\varrho$, we apply lemma \eqref{lemma:lem42} iteratively over $j \in \Omega_1$, with $q=\varrho_1(j)$, and obtain
+$$
+\int e^{i\phi(\varrho)}\mida = 
+\int e^{i\phi(\varrho_2)}exp \Big[ {-\frac{\beta}{8}\sum_{j \in \Omega_1}\varrho_1^2(j)} + i\sum_{j \in \Omega_1} \bar{\phi}(j)\varrho_1(j)\Big] \mida = 
+$$
+$$
+=\int e^{-\beta E_0(\varrho_1)} exp \Big[ \sum_{j \in \Omega_2}\phi(j) (\varrho_2(j) + 1/4\sum_{\abs{k-j}=1} \varrho_1(k) )\Big] \mida =
+\int e^{-\beta E_0(\varrho_1)}e^{\phi(R_0\varrho)}\mida
+$$
+where we used the fact that no two sites in $\Omega_1$ are nearest neighbours, and the equality
+$$
+\sum_{l\in\Omega_1}\bar{\phi}(l)\varrho_1(l) = 
+\sum_{l\in\Omega_1} \frac{1}{4} \sum_{\substack{\abs{t-l}=1 \\ (i.e.\ t\in \Omega_2)}} \phi(t)\varrho_1(l) = 
+\sum_{t \in \Omega_2} \phi(t) \frac{1}{4} \sum_{\abs{t-l}=1} \varrho_1(l).
+$$
+The lemma now follows from 
+$$
+1+K(\varrho)cos(\phi(\varrho) + \sigma(\varrho)) = 
+1 + 
+\frac{K(\varrho)}{2}e^{i\sigma(\varrho)}e^{i\phi(\varrho)} + 
+\frac{K(\varrho)}{2}e^{-i\sigma(\varrho)}e^{-i\phi(\varrho)}.
+$$
+\end{proof}
+
+\subsection{Main Renormalization Step}
+\subsubsection{Additional Notation}
+Let $D(\varrho)$ be all those sites of $\mathbb{Z}^2$ contained in an open disc in $\mathbb{R}^2$ of radius $2d(\varrho)$ centred at a point $x(\varrho)$ such that $supp\varrho \subset D(\varrho)$ and
+$$
+dist(supp\varrho, \partial D(\varrho)) = d(\varrho)
+$$
+where $\partial D(\varrho)$ is the outer boundary of $D(\varrho)$ [we can take for example $x(\varrho)$ to be one of the points which satisfy the minimum in $d(\varrho)$].\\
+Now let us fix a particular charge density $\varrho^* \in \ens$, with $Q(\varrho^*)=0$.
+%TODO: maybe we can stop caring here about the charge, as it must be 0 if we already eliminated the charged density
+We define 
+$$
+\ens^* = \{\varrho: \varrho \in \ens, d(\varrho)\leq 2d(\varrho^*),\ \varrho \neq \varrho^*,\  Q(\varrho)=0\}
+$$
+We consider a mapping, G, from $\ens^*$ into functions of the variables $\{ \phi(j) \}$, with the properties
+\begin{enumerate}
+\item $G(\phi, \varrho)$ only depends in the variables $\{ \phi(j): j \in D(\varrho) \}$.
+\item $G(\phi + b, \varrho) = G(\phi, \varrho)$, for any function $b$ on $\mathbb{Z}^2$ taking an arbitrary, constant value, $r$, on $D(\varrho)$.
+\end{enumerate}
+
+\begin{remark}
+$G$ has the form 
+$$G(\phi, \varrho) = 1+K(\varrho)cos(\phi(\varrho) + \sigma(\varrho)),\ or\ =1+z(\beta, \varrho)cos(\phi(\bar{\varrho}) + \sigma(\varrho))
+$$
+\end{remark}
+We now define
+$$
+F_{\ens^*}(\phi) = \prod_{\varrho \in \ens^*} G(\phi, \varrho)
+\prod_{\varrho^* \neq \varrho \in \ens \setminus \ens^*}[1+K(\varrho)cos(\phi(\varrho) + \sigma(\varrho))].
+$$
+Let $\Omega_1$ be the set of all sites contained in a disc of radius $R_1 \leq d(\varrho^*)$ in $\mathbb{R}^2$ centred at some point $x_1$, with
+$$
+\Omega_1 \subset D(\varrho^*), \ \ supp\varrho^* \cap \Omega_1 \neq \emptyset.
+$$
+Let $\Omega_2$ be some other subset of $D(\varrho)$, disjoint from $\Omega_1$, such that
+$$
+dist(x_1, \partial\Omega_2) \geq RR_1, \ R > 1.
+$$ 
+Let $C_i(\phi, \varrho^*)$ be some bounded function only depending on $\{ \phi(j): j \in \Omega_i \}$, $i=1,2$. We further assume that $C_1(\phi+b, \varrho^*) = e^{iqr}C_1(\phi+b, \varrho)$ for any function b taking the constant value $r$ on $\Omega_1$, where $q=\sum_{j \in \Omega_1}\varrho^*(j)$.
+\begin{remark}
+$C_1$ will later have the form 
+$$
+C_1(\phi, \varrho*) = e^{i\phi(f)}e^{i\sigma(\varrho^*)},
+$$
+where $f$ and $\sigma(\varrho^*)$ are linear functions of $\varrho^*$, $suppf\subseteq\Omega_1$, and $\sum_{j \in \Omega_1}f(j) = \sum_{j \in \Omega_1}\varrho^*(j) = q$.
+\end{remark}
+
+\begin{prop} \label{prop:prop44}
+Under the above notations, for $\alpha > 3/2$ and M sufficiently large:
+$$
+\int C_1(\phi, \varrho^*) C_2(\phi, \varrho^*) F_{\ens^*}\mida = 
+e(C_1, \beta) \int (RC_1)(\phi, \varrho^*) C_2(\phi, \varrho^*) F_{\ens^*}\mida
+$$
+where
+\begin{enumerate}[label={\alph*)}]
+\item 123
+\item 123
+\end{enumerate}
+\end{prop}
+\subsubsection{Technical Lemmas}
+\subsubsection{Proof of Proposition \eqref{prop:prop44}}
+
+\subsection{Proof of Theorem \eqref{thm:thm41}}
+
+\end{document}
