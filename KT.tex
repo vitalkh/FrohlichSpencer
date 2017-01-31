@@ -417,7 +417,11 @@ $$
 We consider a mapping, G, from $\ens^*$ into functions of the variables $\{ \phi(j) \}$, with the properties
 \begin{enumerate}
 \item $G(\phi, \varrho)$ only depends in the variables $\{ \phi(j): j \in D(\varrho) \}$.
-\item $G(\phi + b, \varrho) = G(\phi, \varrho)$, for any function $b$ on $\mathbb{Z}^2$ taking an arbitrary, constant value, $r$, on $D(\varrho)$.
+\item 
+\begin{equation} \label{lab:eq428}
+G(\phi + b, \varrho) = G(\phi, \varrho), 
+\end{equation}
+for any function $b$ on $\mathbb{Z}^2$ taking an arbitrary, constant value, $r$, on $D(\varrho)$.
 \end{enumerate}
 
 \begin{remark}
@@ -436,7 +440,7 @@ $$
 $$
 Let $\Omega_2$ be some other subset of $D(\varrho)$, disjoint from $\Omega_1$, such that
 $$
-dist(x_1, \partial\Omega_2) \geq RR_1, \ R > 1.
+dist(x_1, \partial\Omega_2) \geq RR_1, \ \ where \ 1 < R \leq \frac{diam(D(\varrho^*)}{R_1} .
 $$ 
 Let $C_i(\phi, \varrho^*)$ be some bounded function only depending on $\{ \phi(j): j \in \Omega_i \}$, $i=1,2$. We further assume that $C_1(\phi+b, \varrho^*) = e^{iqr}C_1(\phi+b, \varrho)$ for any function b taking the constant value $r$ on $\Omega_1$, where $q=\sum_{j \in \Omega_1}\varrho^*(j)$.
 %TODO: change the definition of C_1 to be as in the remark. anyway that's what we work with.
@@ -514,7 +518,7 @@ $$
 \end{proof}
 
 \begin{lemma} \label{lemma:appendixE2}
-For M large enough, $\abs{\partial D_i} \leq 20 d(\varrho_i)$
+For M large enough, $\abs{\partial D_i} \leq 20 d(\varrho_i)$.
 \end{lemma}
 
 \begin{proof}
@@ -546,6 +550,7 @@ for $M$ large enough. And so we obtain $\abs{\partial D_i} \leq 20d(\varrho_i)$.
 \begin{proof}[Proof of Proposition \eqref{prop:prop44}]
 For notational simplicity. we suppose the $\Omega_1$ is centred at the origin, i.e., $x_1=0$. Let b(j) be a real-valued function on $\mathbb{R}^2$ defined by
 $$
+b(j) = 
 \threepartdef{lnR,} {\abs{j} \leq R_1}
 {ln[RR_1\abs{j}^{-1}],}{R_1 \leq \abs{j} \leq RR_1}
 {0,}{\abs{j} \geq RR_1.}
@@ -554,7 +559,48 @@ We make the following change of variable:
 $$
 \phi(j) \longmapsto \phi(j) + ia(j),
 $$
-where a is a real-valued function defined in terms of b as follows:
+where $a$ is a real-valued function defined in terms of $b$, using $D_i$, the connected components of $\bigcup_{\varrho \in \ens^*}D(\varrho)$:
+$$
+a(j) = 
+\twopartdef{\gamma b(j),} {j \notin a}
+{\gamma b(x_i),}{j \in D_i}
+$$
+where $x_i$ is a point of $D_i$ chosen so that if $D_i$ meets $\abs{k} \leq R_1$, $a(j)\equiv \gamma ln(R)$, and if $D_i$ meets $\abs{k} \geq RR_1$, $a(j)\equiv 0$ for all $j \in D_i$. Otherwise we set $x_i=x(\varrho_i)$, the center of $D(\varrho_i)$. The constant $\gamma$ will be chosen later.
+
+\begin{remarks}
+Note that:
+\begin{enumerate}
+\item For M large enough, $D_i$ can not meet both $\abs{k} \leq R_1$, and $\abs{k} \geq RR_1$. The idea is that if $D_i$ meets $\abs{k} \leq R_1$, then $D_i$ is very close to $\varrho^*$ (up to $R_1$), and so it must be small compared to $R_1$. 
+To be exact, suppose that it isn't true, then there are $\abs{y_1} \leq R_1, \abs{y_2} \geq RR_1$, $y_i \in D_i$. Let $z_1 \in \varrho^*$ with $\abs{z_1} \leq R_1$, and $z_2 \in \varrho_i \subseteq D_i$, then
+$$
+M\frac{d(\varrho_i)}{2} \leq M\Big( \frac{d(\varrho_i)}{2} \Big)^\alpha \leq dist(\varrho^*, \varrho_i) \leq dist(z_1, z_2) \leq dist(z_1, y_1) + dist(y_1, y_2) + dist(y_2, z_2) \leq 
+$$
+$$
+\leq 2R_1 + diam(D_i) + diam(D_i) \leq 2R_1 + 10 d(\varrho_i),
+$$
+where the last inequality follows from \eqref{lemma:appendixE2}. Therefore $\frac{M-20}{2}d(\varrho_i) \leq 2R_1$, and so
+$$
+diam(D_i) \leq 5d(\varrho_i) \leq \frac{20}{M-20} R_1 < (R-1)R_1
+$$
+for $M$ large enough, and $R>????????????????????????????$.
+%TODO: make sure to bound R from below. the bound doesn't have to be sqrt(2), but it has to be constant > 1. if not - this remark is false.
+\item The choice of a(j) is such that the change of variable will be constant in $D(\varrho)$ for every $\varrho \neq \varrho^*$.\\
+\end{enumerate}
+\end{remarks}
+
+Now consider the affects of the change of variables:
+\begin{enumerate}[label={\alph*)}]
+\item $F_{\ens^*}$ is unaffected. If $\varrho \in \ens^*$, by property \eqref{lab:eq428}, $G(\phi+ia, \varrho) = G(\phi, \varrho)$, as $a$ is constant on $D(\varrho)$. If $\varrho \notin \ens^*$, i.e. $d(\varrho) > 2d(\varrho^*)$, then
+$$
+dist(\varrho, \varrho^*) \geq Md(\varrho^*)^\alpha \geq Md(\varrho^*) \geq \frac{M}{4}RR_1
+$$
+and so for $M$ large enough, $a(j)=0$ for $j \in supp(\varrho)$.
+\item $C_2$ is unaffected by the change, as it depends only on $\phi(j), j\in \Omega_2$, and so again $a(j)=0$ for such $j$ (if $j \in D_i$ for some $i$, then $x_i$ is chosen such that $a(j)=0$, and otherwise $b(j)=0$).
+\item 
+$$
+\mida(\phi + ia) = 
+$$
+\end{enumerate}
 
 \end{proof}
 
