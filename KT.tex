@@ -472,52 +472,74 @@ $$
 \end{prop}
 \subsubsection{Connected Components of $\bigcup_{\varrho \in \ens^*}D(\varrho)$}
 Let $\ens^\prime$ be some sub-ensemble of $\ens$, and let $D_i$ be the connected components of $\bigcup_{\varrho \in \ens^\prime}D(\varrho)$ (we say that $D(\varrho_1), D(\varrho_2)$ are connected if $D(\varrho_1)\cap D(\varrho_2)\neq\emptyset$). We express each $D_i$ as a union of $D(\varrho)$, $\varrho \in S_i \subset \ens^\prime$. For each $S_i$, denote by $\varrho_i \in S_i$ a density with maximal diameter.
-\begin{lemma}
+
+\begin{lemma} \label{lemma:appendixE1}
 For M large enough, $diam(D_i) \leq 5 d(\varrho_i)$, and also $\varrho_i$ is a unique density with maximal diameter.
 \end{lemma}
 
 \begin{proof}
 We will show that there is only one density $\varrho_i \in S_i$ with maximal diameter, and that all other densities $\varrho \in S_i$ have a diameter which is $\ll d(\varrho_i)$, for $M$ large enough.\\
-We shall prove this by induction on the size of $d(\varrho_i)$. First, if $d(\varrho_i) \leq 2$, and $M$ large enough, $D_i = D(\varrho_i)$, and therefore $diam(D_i) = diam(D(\varrho_i) \leq 5d(\varrho_i)$ (given any $\varrho^\prime$ with $d(\varrho^\prime) \leq 2$, $dist(\varrho_i,\varrho^\prime) \geq M$, and so for $M>20$, $D(\varrho_i)$ and $D(\varrho^\prime)$ are far enough from each other, to not be in the same connected component).\\
+We shall prove this by induction on the size of $d(\varrho_i)$, where $\varrho_i$ is a density with maximal diameter. First, if $d(\varrho_i) \leq 2$, and $M$ large enough, $D_i = D(\varrho_i)$, and therefore $diam(D_i) = diam(D(\varrho_i)) \leq 5d(\varrho_i)$ (given any $\varrho^\prime$ with $d(\varrho^\prime) \leq 2$, $dist(\varrho_i,\varrho^\prime) \geq M$, and so for $M>20$, $D(\varrho_i)$ and $D(\varrho^\prime)$ are far enough from each other, to not be in the same connected component).\\
 Our induction step will be increasing $d(\varrho_i)$ by a factor of 2. Let
 $$
 \mathscr{M} = \{ \varrho \in S_i: d(\varrho) \geq \frac{1}{2}d(\varrho_i) \}
 $$
-and define $C_{ij}$ to be the connected components of $ \bigcup_{\varrho \in S_i \setminus \mathscr{M}} D(\varrho)$. By induction, 
+and define $D_{ij}$ to be the connected components of $ \bigcup_{\varrho \in S_i \setminus \mathscr{M}} D(\varrho)$. By induction, 
 $$
-diamC_{ij} \leq 5d(\varrho_{ij}) \leq \frac{5}{2} d(\varrho_i).
+diamD_{ij} \leq 5d(\varrho_{ij}) \leq \frac{5}{2} d(\varrho_i).
 $$
-Since $C_{ij}$ intersect $D(\varrho)$ for some $\varrho \in \mathscr{M}$, in some point $y$, we conclude that
+Since $D_{ij}$ intersect $D(\varrho)$ for some $\varrho \in \mathscr{M}$, in some point $y$, we conclude that
 $$
 Md(\varrho_{ij})^\alpha \leq dist(\varrho, \varrho_{ij}) \leq 
 dist(\varrho, y) + dist(y, \varrho_{ij}) \leq 4d(\varrho) + 5d(\varrho_{ij}) \leq 8d(\varrho_i)
 $$
 and thus for $M$ large enough $d(\varrho_{ij}) \ll d(\varrho_i)$, so
 $$
-diamC_{ij} \leq 5d(\varrho_{ij}) \leq \frac{1}{2} d(\varrho_i).
+diamD_{ij} \leq 5d(\varrho_{ij}) \leq \frac{1}{2} d(\varrho_i).
 $$
 Now, for $M$ large enough, any two densities $\varrho_1 \neq \varrho_2$ in $\mathscr{M}$, are far enough from each other, so that $D(\varrho_1)$ and $D(\varrho_2)$ are not connected, since if there exists $y \in D(\varrho_1)\cap D(\varrho_2)$ then
 $$
 M\Big( \frac{d(\varrho_i)}{2} \Big)^\alpha \leq dist(\varrho_1, \varrho_2) \leq dist(\varrho_1, y) + dist(y, \varrho_2) \leq 4d(\varrho_1) + 4d(\varrho_2) \leq 8d(\varrho_i)
 $$
 which is false for $M$ large enough.\\
-So if $\mathscr{M}$ has two element, $\varrho_1, \varrho_2$, then $D(\varrho_1), D(\varrho_2)$ are connected by some $C_{ij}$, and so:
+So if $\mathscr{M}$ has two element, $\varrho_1, \varrho_2$, then $D(\varrho_1), D(\varrho_2)$ are connected by some $D_{ij}$, and so:
 $$
 M\Big( \frac{d(\varrho_i)}{2} \Big)^\alpha \leq dist(\varrho_1, \varrho_2) \leq dist(\varrho_1, y_1) + dist(y_1, y_2) + dist(y_2, \varrho_2) \leq 8d(\varrho_i) + diam(c_{ij}) \leq 9d(\varrho_i)
 $$
-where $y_1 \in C_{ij} \cap D(\varrho_1), y_2 \in C_{ij} \cap D(\varrho_2)$, which is a false for $M$ large enough.\\
-Therefore $\abs{\mathscr{M}} = 1$ for $M$ large enough, which implies that there is a unique density $\varrho_i \in S_i$ with maximal diameter. Also, all of the $C_{ij}$ intersect $D(\varrho_i)$. Thus,
+where $y_1 \in D_{ij} \cap D(\varrho_1), y_2 \in D_{ij} \cap D(\varrho_2)$, which is a false for $M$ large enough.\\
+Therefore $\abs{\mathscr{M}} = 1$ for $M$ large enough, which implies that there is a unique density $\varrho_i \in S_i$ with maximal diameter. Also, all of the $D_{ij}$ intersect $D(\varrho_i)$. Thus,
 $$
-diam(C_i) \leq 4d(\varrho_i) + 2max(diam(C_{i,j})) \leq 5d(\varrho_i)
+diam(D_i) \leq 4d(\varrho_i) + 2max(diam(D_{i,j})) \leq 5d(\varrho_i)
 $$
 \end{proof}
 
-\begin{lemma}
+\begin{lemma} \label{lemma:appendixE2}
 For M large enough, $\abs{\partial D_i} \leq 20 d(\varrho_i)$
 \end{lemma}
 
 \begin{proof}
-%induction base
+We shall prove this lemma by induction on $d(\varrho_i)$ as in lemma \eqref{lemma:appendixE1}. So again, for $M$ large enough, $\abs{S_i} = 1$, and then
+$$
+\abs{\partial D_i} = \abs{\partial D(\varrho_i)} \leq 2\pi\cdot 2d(\varrho_i) < 20d(\varrho_i)
+$$
+Now, using the same notation as in lemma \eqref{lemma:appendixE1}, $\abs{\partial D_{ij}} \leq 20 d(\varrho_{ij})$, and hence
+$$
+\abs{\partial D_i} \leq \abs{\partial D(\varrho_i)} + \sum_j \abs{\partial D_{ij}} \leq
+4\pi d(\varrho_i) + 20 \sum_j d(\varrho_{ij})
+$$
+Now we bound the number of components $D_{ij}$ with $2^{k-1} \leq diam(D_{ij}) \leq 2^k$ [which intersect $\partial D(\varrho_i)$]. Let $D_{i1}, D_{i2}$ with such diameter, so
+$$
+M2^{\alpha(k-1)} \leq dist(\varrho_{i1}, \varrho_{i2}) \leq 5d(\varrho_{i1}) + dist(D_{i1}, D_{i2}) + 5d(\varrho_{i2}) \leq dist(D_{i1}, D_{i2}) + 10 \cdot 2^k
+$$
+and thus for M large enough we obtain $\frac{M}{8}2^{\alpha k} \leq dist(D_{i1}, D_{i2})$. Therefore, the number of possible $D_{ij}$ in this scale, which intersect $\partial D(\varrho_i)$ is bounded by
+$$
+\frac{\abs{\partial D(\varrho_i)}}{\frac{M}{8}2^{\alpha k}} \leq \frac{const}{M} 2^{-\alpha k} d(\varrho_i),
+$$
+and so
+$$
+20 \sum d(\varrho_{ij}) \leq \sum_{k=1}^\infty \frac{const}{M} 2^{-\alpha k} \cdot 2^k \leq \frac{const^\prime}{M} d(\varrho_i) \leq 2d(\varrho_i)
+$$
+for $M$ large enough. And so we obtain $\abs{\partial D_i} \leq 20d(\varrho_i)$.
 \end{proof}
 
 \subsubsection{Proof of Proposition \eqref{prop:prop44}}
