@@ -444,44 +444,46 @@ Let $\Omega_1$ be the set of all sites contained in a disc of radius $R_1 \leq d
 $$
 \Omega_1 \subset D(\varrho^*), \ \ supp\varrho^* \cap \Omega_1 \neq \emptyset.
 $$
-Let $\Omega_2$ be some other subset of $D(\varrho)$, disjoint from $\Omega_1$, such that
+Let $\Omega_2$ be some other subset of $D(\varrho^*)$, disjoint from $\Omega_1$, such that
 $$
 dist(x_1, \partial\Omega_2) \geq RR_1, \ \ where \ 1 < R \leq \frac{diam(D(\varrho^*)}{R_1} .
 $$ 
-Let 
-$$
-C_1(\phi, \varrho^*) = e^{i\phi(f_1)} e^{i\sigma(\varrho^*)}
-$$ 
-$$
-C_2(\phi, \varrho^*) = e^{i\phi(f_2)}
-$$ 
-where $f_j$ are some linear transformations of $\varrho^*$, with $suppf_j \subset \Omega_j$, so that $C_j$ only depending on $\{ \phi(j): j \in \Omega_i \}$, and also $\sum_{k \in \Omega_i}f_j(k) = \sum_{k \in \Omega_i}\varrho^*(k)$. 
-Note that 
-$$
-C_1(\phi+b, \varrho^*) = e^{iqr}C_1(\phi, \varrho)
-$$ 
-where $q = \sum_{k \in \Omega_1}\varrho^*(k)$.\\
+Let $f_j$ be some linear transformations of $\varrho^*$, with $suppf_j \subset \Omega_j$, $j=1,2$, such that also $\sum_{k \in \Omega_i}f_j(k) = \sum_{k \in \Omega_i}\varrho^*(k)$, and denote
+\begin{equation} \label{label:qdef}
+q := \sum_{k \in \Omega_1}\varrho^*(k) = \sum_{k \in \Omega_1}f_1(k).
+\end{equation}
 Also denote 
 $$
 i_\beta(\phi, a) = exp\Big(-\frac{i}{\beta} \sum_{\substack{\abs{k-j}=1 \\ dist(j,x_1) \leq RR_1}} (\phi(k)-\phi(j)) \cdot (a(k)-a(j))\Big).
 $$
 Note that $i_\beta(\phi+b, a) = i_\beta(\phi, a)$ for any $b$ which is constant on $\{j: dist(j,x_1) \leq RR_1\} $.
 
+$$
+C_1(\phi, \varrho^*) = e^{i\phi(f_1)} e^{i\sigma(\varrho^*)}
+$$ 
+$$
+C_2(\phi, \varrho^*) = e^{i\phi(f_2)}
+$$ 
 
 \begin{prop}[Main Renormalization Step] \label{prop:prop44}
 Under the notations above, for $\alpha > 3/2$ and M sufficiently large:
 \begin{equation} \label{label:eq44}
-\int C_1(\phi, \varrho^*) C_2(\phi, \varrho^*) F_{\ens^*}\mida = 
-e(C_1, \beta) \int (RC_1)(\phi, \varrho^*) C_2(\phi, \varrho^*) F_{\ens^*}\mida
+\int e^{i\phi(f_1)} e^{i\phi(f_2)} e^{i\sigma(\varrho^*)} F_{\ens^*}\mida = 
+e(C_1, \beta) \int i_\beta(\phi,a) e^{i\phi(f_1)} e^{i\phi(f_2)} e^{i\sigma(\varrho^*)} F_{\ens^*}\mida
 \end{equation}
 where
 \begin{enumerate}[label={\alph*)}]
 \item $e$ is a numerical factor satisfying
 $$
-0 \leq e(C_1, \beta) \leq exp\Big[ -ln(R)\frac{q^2\beta}{2d(M)} \Big]
+0 \leq e(f_1, \beta) \leq exp\Big[ -ln(R)\frac{q^2\beta}{2d(M)} \Big]
 $$
 for some constant $d(M)$, with $d(M) \rightarrow 2\pi+1$, as $M\rightarrow \infty$, and
-\item $RC_1(\phi, \varrho^*) = i_\beta(\phi,a)C_1(\phi, \varrho^*)$, only depending on the variables $\{ \phi(j):j \in R\Omega_1 \}$, with $R\Omega_1 := \{ j: dist(j,x_1) \leq RR_1 \}$, where the function $a$ is defined in \eqref{label:eq437}, with $a(j)=0$ holds for $dist(j,x_1) \geq RR_1$, and $a$ is constant on $\Omega_1$.
+\item $i_\beta(\phi,a)$ only depends on the variables $\{ \phi(j):j \in R\Omega_1 \}$, with $R\Omega_1 := \{ j: dist(j,x_1) \leq RR_1 \}$, where the function $a$ is defined in \eqref{label:eq437}, with:
+\begin{enumerate}
+\item $a(j)=0$ for $dist(j,x_1) \geq RR_1$, and
+\item $a$ is constant on $\Omega_1$.
+\end{enumerate}
+
 \end{enumerate}
 \end{prop}
 \subsubsection{Connected Components of $\bigcup_{\varrho \in \ens^*}D(\varrho)$}
@@ -608,20 +610,21 @@ $$
 dist(\varrho, \varrho^*) \geq Md(\varrho^*)^\alpha \geq Md(\varrho^*) \geq \frac{M}{4}RR_1
 $$
 and so for $M$ large enough, $a(j)=0$ for $j \in supp(\varrho)$.
-\item $C_2$ is unaffected by the change, as it depends only on $\phi(j), j\in \Omega_2$, and so again $a(j)=0$ for such $j$ (if $j \in D_i$ for some $i$, then $x_i$ is chosen such that $a(j)=0$, and otherwise $b(j)=0$).
+\item $e^{i\sigma(\varrho^*)}$ is unaffected by the change, as it doesn't depend on $\phi$.
+\item $ e^{i\phi(f_2)}$ is unaffected by the change, as it depends only on $\phi(j), j\in \Omega_2$, and $a(j)=0$ for such $j$ (if $j \in D_i$ for some $i$, then $x_i$ is chosen such that $a(j)=0$, and otherwise $b(j)=0$).
 \item 
 $$
 \mida(\phi + ia) = i_\beta(\phi, a) \cdot exp\Big[\frac{1}{2\beta} \norm{\nabla a}_2^2 \Big]\mida(\phi)
 $$
-\item $C_1(\phi+ia, \varrho^*) = e^{-\gamma (lnR) q} C_1(\phi, \varrho^*)$, as $a(j)=\gamma ln(R)$ for $\abs{j} \leq R_1$, i.e. $j \in \Omega_1$.
+\item $e^{i(\phi + ia)(f_1)} = e^{-\gamma (lnR) q} e^{i\phi(f_1)}$, as $a(j)=\gamma ln(R)$ for $\abs{j} \leq R_1$, i.e. $j \in \Omega_1$, and $f_1$ depends only on $j \in \Omega_1$ ($q = \sum_{k \in \Omega_1}f_1(k)$ as defined in \eqref{label:qdef}).
 \end{enumerate}
 Setting 
 $$
-e(C_1, \beta) = e^{-\gamma (lnR) q} exp\Big[\frac{1}{2\beta} \norm{\nabla a}_2^2 \Big]
+e(f_1, \beta) = e^{-\gamma (lnR) q} exp\Big[\frac{1}{2\beta} \norm{\nabla a}_2^2 \Big]
 $$
 gives us \eqref{label:eq44}.
 
-It remains to prove the bound on $e(C_1, \beta)$, which is really the essential part of the proposition.
+It remains to prove the bound on $e(f_1, \beta)$, which is really the essential part of the proposition.
 
 \end{proof}
 
