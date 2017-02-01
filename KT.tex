@@ -62,6 +62,7 @@
 	\right.
 }
 
+\numberwithin{equation}{section}
 
 \begin{document}
 \section{Introduction}\label{sec:introduction}
@@ -401,6 +402,11 @@ $$
 $$
 \end{proof}
 
+
+
+
+
+
 \subsection{Main Renormalization Step}
 \subsubsection{Additional Notation and Proposition Statement}
 Let $D(\varrho)$ be all those sites of $\mathbb{Z}^2$ contained in an open disc in $\mathbb{R}^2$ of radius $2d(\varrho)$ centred at a point $x(\varrho)$ such that $supp\varrho \subset D(\varrho)$ and
@@ -442,22 +448,32 @@ Let $\Omega_2$ be some other subset of $D(\varrho)$, disjoint from $\Omega_1$, s
 $$
 dist(x_1, \partial\Omega_2) \geq RR_1, \ \ where \ 1 < R \leq \frac{diam(D(\varrho^*)}{R_1} .
 $$ 
-Let $C_i(\phi, \varrho^*)$ be some bounded function only depending on $\{ \phi(j): j \in \Omega_i \}$, $i=1,2$. We further assume that $C_1(\phi+b, \varrho^*) = e^{iqr}C_1(\phi+b, \varrho)$ for any function b taking the constant value $r$ on $\Omega_1$, where $q=\sum_{j \in \Omega_1}\varrho^*(j)$.
-%TODO: change the definition of C_1 to be as in the remark. anyway that's what we work with.
-\begin{remark}
-$C_1$ will later have the form 
+Let 
 $$
-C_1(\phi, \varrho*) = e^{i\phi(f)}e^{i\sigma(\varrho^*)},
+C_1(\phi, \varrho^*) = e^{i\phi(f_1)} e^{i\sigma(\varrho^*)}
+$$ 
 $$
-where $f$ and $\sigma(\varrho^*)$ are linear functions of $\varrho^*$, $suppf\subseteq\Omega_1$, and $\sum_{j \in \Omega_1}f(j) = \sum_{j \in \Omega_1}\varrho^*(j) = q$.
-\end{remark}
+C_2(\phi, \varrho^*) = e^{i\phi(f_2)}
+$$ 
+where $f_j$ are some linear transformations of $\varrho^*$, with $suppf_j \subset \Omega_j$, so that $C_j$ only depending on $\{ \phi(j): j \in \Omega_i \}$, and also $\sum_{k \in \Omega_i}f_j(k) = \sum_{k \in \Omega_i}\varrho^*(k)$. 
+Note that 
+$$
+C_1(\phi+b, \varrho^*) = e^{iqr}C_1(\phi, \varrho)
+$$ 
+where $q = \sum_{k \in \Omega_1}\varrho^*(k)$.\\
+Also denote 
+$$
+i_\beta(\phi, a) = exp\Big(-\frac{i}{\beta} \sum_{\substack{\abs{k-j}=1 \\ dist(j,x_1) \leq RR_1}} (\phi(k)-\phi(j)) \cdot (a(k)-a(j))\Big).
+$$
+Note that $i_\beta(\phi+b, a) = i_\beta(\phi, a)$ for any $b$ which is constant on $\{j: dist(j,x_1) \leq RR_1\} $.
+
 
 \begin{prop}[Main Renormalization Step] \label{prop:prop44}
 Under the notations above, for $\alpha > 3/2$ and M sufficiently large:
-$$
+\begin{equation} \label{label:eq44}
 \int C_1(\phi, \varrho^*) C_2(\phi, \varrho^*) F_{\ens^*}\mida = 
 e(C_1, \beta) \int (RC_1)(\phi, \varrho^*) C_2(\phi, \varrho^*) F_{\ens^*}\mida
-$$
+\end{equation}
 where
 \begin{enumerate}[label={\alph*)}]
 \item $e$ is a numerical factor satisfying
@@ -465,17 +481,14 @@ $$
 0 \leq e(C_1, \beta) \leq exp\Big[ -ln(R)\frac{q^2\beta}{2d(M)} \Big]
 $$
 for some constant $d(M)$, with $d(M) \rightarrow 2\pi+1$, as $M\rightarrow \infty$, and
-\item $RC_1$ is a function, defined in (??????????????????) below, only depending on the variables $\{ \phi(j):j \in R\Omega_1 \}$, with $R\Omega_1 := \{ j: dist(j,x_1) \leq RR_1 + 1 \}$, with the properties
-$$
-\norm{(RC_1)(\cdot, \varrho^*)}_\infty \leq \norm{C_1(\cdot, \varrho^*)}_\infty
-$$
-$$
-(RC_1)(\cdot, \varrho^*)........................
-$$
+\item $RC_1(\phi, \varrho^*) = i_\beta(\phi,a)C_1(\phi, \varrho^*)$, only depending on the variables $\{ \phi(j):j \in R\Omega_1 \}$, with $R\Omega_1 := \{ j: dist(j,x_1) \leq RR_1 \}$, where the function $a$ is defined in \eqref{label:eq437}, with $a(j)=0$ holds for $dist(j,x_1) \geq RR_1$, and $a$ is constant on $\Omega_1$.
 \end{enumerate}
 \end{prop}
 \subsubsection{Connected Components of $\bigcup_{\varrho \in \ens^*}D(\varrho)$}
 Let $\ens^\prime$ be some sub-ensemble of $\ens$, and let $D_i$ be the connected components of $\bigcup_{\varrho \in \ens^\prime}D(\varrho)$ (we say that $D(\varrho_1), D(\varrho_2)$ are connected if $D(\varrho_1)\cap D(\varrho_2)\neq\emptyset$). We express each $D_i$ as a union of $D(\varrho)$, $\varrho \in S_i \subset \ens^\prime$. For each $S_i$, denote by $\varrho_i \in S_i$ a density with maximal diameter.
+\begin{remark}
+The reason for looking on connected components, is that later, in the proof of proposition \eqref{prop:prop44}, we will make a change of variables $\phi(j) \longmapsto \phi(j) + ia(j)$, and we would want $a(j)$ to be constant on every $D(\varrho), \varrho \neq \varrho^*$ .
+\end{remark}
 
 \begin{lemma} \label{lemma:appendixE1}
 For M large enough, $diam(D_i) \leq 5 d(\varrho_i)$, and also $\varrho_i$ is a unique density with maximal diameter.
@@ -560,11 +573,11 @@ $$
 \phi(j) \longmapsto \phi(j) + ia(j),
 $$
 where $a$ is a real-valued function defined in terms of $b$, using $D_i$, the connected components of $\bigcup_{\varrho \in \ens^*}D(\varrho)$:
-$$
+\begin{equation} \label{label:eq437}
 a(j) = 
 \twopartdef{\gamma b(j),} {j \notin a}
 {\gamma b(x_i),}{j \in D_i}
-$$
+\end{equation}
 where $x_i$ is a point of $D_i$ chosen so that if $D_i$ meets $\abs{k} \leq R_1$, $a(j)\equiv \gamma ln(R)$, and if $D_i$ meets $\abs{k} \geq RR_1$, $a(j)\equiv 0$ for all $j \in D_i$. Otherwise we set $x_i=x(\varrho_i)$, the center of $D(\varrho_i)$. The constant $\gamma$ will be chosen later.
 
 \begin{remarks}
@@ -598,9 +611,17 @@ and so for $M$ large enough, $a(j)=0$ for $j \in supp(\varrho)$.
 \item $C_2$ is unaffected by the change, as it depends only on $\phi(j), j\in \Omega_2$, and so again $a(j)=0$ for such $j$ (if $j \in D_i$ for some $i$, then $x_i$ is chosen such that $a(j)=0$, and otherwise $b(j)=0$).
 \item 
 $$
-\mida(\phi + ia) = 
+\mida(\phi + ia) = i_\beta(\phi, a) \cdot exp\Big[\frac{1}{2\beta} \norm{\nabla a}_2^2 \Big]\mida(\phi)
 $$
+\item $C_1(\phi+ia, \varrho^*) = e^{-\gamma (lnR) q} C_1(\phi, \varrho^*)$, as $a(j)=\gamma ln(R)$ for $\abs{j} \leq R_1$, i.e. $j \in \Omega_1$.
 \end{enumerate}
+Setting 
+$$
+e(C_1, \beta) = e^{-\gamma (lnR) q} exp\Big[\frac{1}{2\beta} \norm{\nabla a}_2^2 \Big]
+$$
+gives us \eqref{label:eq44}.
+
+It remains to prove the bound on $e(C_1, \beta)$, which is really the essential part of the proposition.
 
 \end{proof}
 
