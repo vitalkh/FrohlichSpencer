@@ -656,7 +656,29 @@ R_1-6d(\varrho_i) \overset{(i)}{\leq} \abs{x_i} \overset{(ii)}{\leq} RR_1 + 6d(\
 \end{equation}
 
 otherwise $D_i$ lies entirely outside the annulus $R_1 \leq \abs{j} \leq RR_1$, hence $b(x_i)=b(j)$ for $j \in \partial D_i$.
-Fix such i. Denote $d = min(d(\varrho_i), d(\varrho^*))$, so by (???????2.4) $ Md^\alpha \leq dist(\varrho_i, \varrho^*) $. Note that
+Fix such i. 
+
+\begin{lemma}
+This lemma contains several calculations, which basically show that $d(\varrho_i)$ is small compared to $R_1$ for $M$ large enough:
+\begin{enumerate}
+\item 
+\begin{equation} \label{label:eq448}
+\frac{M-12}{2}d(\varrho_i)^\alpha \leq \abs{x_i}
+\end{equation}
+\item 
+\begin{equation} \label{label:eq450}
+(1-\delta) R_1 \leq \abs{x_i} \leq RR_1(1+\delta),
+\end{equation}
+for some $\delta = \delta(M,\alpha)$ which tends to 0 as $M \rightarrow \infty$.
+\item 3
+\begin{equation} \label{label:eq451}
+\abs{x_i} - 6d(\varrho_i) \geq \frac{1}{2} \abs{x_i}
+\end{equation}
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+
+Denote $d = min(d(\varrho_i), d(\varrho^*))$, so by (???????2.4) $ Md^\alpha \leq dist(\varrho_i, \varrho^*) $. Note that
 $$
 dist(\varrho^*, \varrho_i) \leq dist(\varrho^*, 0) + dist(0, x_i) + dist(x_i, \varrho_i) \leq R_1 + \abs{x_i} + 6d(\varrho_i)
 $$
@@ -667,10 +689,7 @@ $$
 $$
 \leq 2RR_1 + 48 d(\varrho^*)  \leq 56d(\varrho^*).
 $$
-Therefore, for $\alpha > 1$ and $M$ large enough $d=d(\varrho_i)$ holds. We then get from (iii) and (iv) that
-\begin{equation} \label{label:eq448}
-\frac{M-12}{2}d(\varrho_i)^\alpha \leq \abs{x_i}
-\end{equation}
+Therefore, for $\alpha > 1$ and $M$ large enough $d=d(\varrho_i)$ holds. We then get from (iii) and (iv) that \eqref{label:eq448} holds.
 and %TODO: why??
 $$
 \frac{M-24}{2}d(\varrho_i)^\alpha \leq RR_1.  
@@ -679,17 +698,75 @@ Combining this with \eqref{label:eq446}, we obtain
 $$
 R_1 - \frac{12}{M-12} \abs{x_i} \leq \abs{x_i} \leq RR_1 + \frac{12}{M-12}\abs{x_i}
 $$
-and so 
+and so \eqref{label:eq450} holds.
+Moreover, for $M$ large enough, we obtain \eqref{label:eq451} from \eqref{label:eq448}.
+\end{proof}
+
+
+Next, let $\ens_k^* = \{ \varrho_i \in \ens^* : 2^k \leq d(\varrho_i) < 2^{k+1} , \eqref{label:eq450}\ holds\ for\ \varrho_i \}$.
+\begin{lemma}
 $$
-(1-\delta) R_1 \leq \abs{x_i} \leq RR_1(1+\delta),
+\sum_{\varrho_i \in \ens_k^*} \abs{x_i}^{-2} \leq K_2 \frac{2^{-2\alpha k}}{M^2} lnR,
 $$
-for some $\delta = \delta(M,\alpha)$ which tends to 0 as $M \rightarrow \infty$.
-Moreover, for $M$ large enough, we obtain from \eqref{label:eq448}
+for some constant $K_2$, independent of $\varrho_i, \alpha, M$.
+\end{lemma}
+\begin{proof}
+Let $\varrho_1, \varrho_2 \in \ens_k^*$, let $x(\varrho_1), x(\varrho_2)$ be the the centres of $D(\varrho_1), D(\varrho_2)$, and let $c_k:=\frac{M-12}{2}2^{\alpha k}$, then
 $$
-\abs{x_i} - 6d(\varrho_i) \geq \frac{1}{2} \abs{x_i}
+dist(\varrho_1, \varrho_2) \leq dist(\varrho_1, x(\varrho_1)) + dist(x(\varrho_1), x(\varrho_2)) + dist(x(\varrho_2), \varrho_2) \leq 
+$$
+$$
+\leq d(\varrho_1) + \abs{x(\varrho_1) - x(\varrho_2)} + d(\varrho_2)
+$$
+and so using (??????????????2.4)
+$$
+\abs{x(\varrho_1) - x(\varrho_2)} \geq  dist(\varrho_1, \varrho_2) - d(\varrho_1) - d(\varrho_2) \geq M2^{\alpha k} - 2^{k+2} \geq 2c_k.
+$$
+Also, using \eqref{label:eq448}, 
+$$
+\abs{x_i} \geq \frac{M-12}{2} d(\varrho_i)^\alpha \geq c_k .
+$$
+Now we bound the number of $\varrho_i \in \ens_k^*$ with $rc_k \leq \abs{x_i} \leq rc_{k+1}$, by $K_1r$ for $K_1$ independent of $\varrho_i, \alpha, M$, provided $M$ is sufficiently 
+large. The main observation is that for two such $\varrho_i$, $\abs{x(\varrho_i) - x(\varrho_j)}$ is bounded below, so that around every $x(\varrho_1)$ there's a disc of radius $2c_k$ with no other $x_j$. Now we can bound the number of such discs which can be inside the annulus $rc_k \leq \abs{x_i} \leq rc_{k+1}$ by
+$$
+\frac{\pi(r+1)^2 c_k^2 - \pi r^2 c_k^2}{\pi 4 c_k^2} \leq K_1r.
+$$
+By \eqref{label:eq450}, a valid value for $r$ must satisfy
+$$
+rc_k \leq RR_1(1+\delta)
+\text{ and }
+(r+1) c_k \geq (1-\delta) R_1
+$$
+so that the range of values of r is given by $m_1 \leq r \leq m_2$, where
+$$
+m_1 := max(c_k^{-1} (1-\delta)R_1 - 1, 1)
+$$
+$$
+m_2 := max(c_k^{-1} (1+\delta)RR_1, 1)
+$$
+Now,
+$$
+\sum_{\varrho_i \in \ens_k^*} \abs{x_i}^{-2} \leq 
+\sum_{r=m_1}^{m_2} r^{-2}c_k^{-2} \cdot K_1r \leq 
+K_1^\prime \frac{2^{-2\alpha k}}{M^2} \sum_{r=m_1}^{m_2} r^{-1} \leq 
+$$
+$$
+\leq K_2 \frac{2^{-2\alpha k}}{M^2} lnR
 $$
 \end{proof}
-tmp commit
+
+Now let us go back to bounding $\sum B_i$
+
+
+
+
+
+\end{proof}
+
+
+
+
+
 \subsection{Proof of Theorem \eqref{thm:thm41}}
 
 \end{document}
