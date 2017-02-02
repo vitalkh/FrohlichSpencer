@@ -446,7 +446,7 @@ $$
 $$
 Let $\Omega_2$ be some other subset of $D(\varrho^*)$, disjoint from $\Omega_1$, such that
 $$
-dist(x_1, \partial\Omega_2) \geq RR_1, \ \ where \ 1 < R \leq \frac{diam(D(\varrho^*)}{R_1} .
+dist(x_1, \partial\Omega_2) \geq RR_1, \ \ where \ (1 < R) \ and\ (RR_1 \leq diam(D(\varrho^*))).
 $$ 
 Let $f_j$ be some linear transformations of $\varrho^*$, with $suppf_j \subset \Omega_j$, $j=1,2$, such that also $\sum_{k \in \Omega_i}f_j(k) = \sum_{k \in \Omega_i}\varrho^*(k)$, and denote
 \begin{equation} \label{label:qdef}
@@ -477,7 +477,7 @@ where
 $$
 0 \leq e(f_1, \beta) \leq exp\Big[ -ln(R)\frac{q^2\beta}{2d(M)} \Big]
 $$
-for some constant $d(M)$, with $d(M) \rightarrow 2\pi+1$, as $M\rightarrow \infty$, and
+for some constant $d(M)$, with $d(M) \rightarrow 24\pi$, as $M\rightarrow \infty$, and
 \item $i_\beta(\phi,a)$ only depends on the variables $\{ \phi(j):j \in R\Omega_1 \}$, with $R\Omega_1 := \{ j: dist(j,x_1) \leq RR_1 \}$, where the function $a$ is defined in \eqref{label:eq437}, with:
 \begin{enumerate}
 \item $a(j)=0$ for $dist(j,x_1) \geq RR_1$, and
@@ -495,6 +495,10 @@ The reason for looking on connected components, is that later, in the proof of p
 \begin{lemma} \label{lemma:appendixE1}
 For M large enough, $diam(D_i) \leq 5 d(\varrho_i)$, and also $\varrho_i$ is a unique density with maximal diameter.
 \end{lemma}
+
+\begin{remark}
+From now on, we will associate $D_i$ with it's unique density with maximal diameter, $\varrho_i$.
+\end{remark}
 
 \begin{proof}
 We will show that there is only one density $\varrho_i \in S_i$ with maximal diameter, and that all other densities $\varrho \in S_i$ have a diameter which is $\ll d(\varrho_i)$, for $M$ large enough.\\
@@ -626,6 +630,64 @@ gives us \eqref{label:eq44}.
 
 It remains to prove the bound on $e(f_1, \beta)$, which is really the essential part of the proposition.
 
+By the definition of $a$
+\begin{equation} \label{label:eq442}
+\norm{\nabla a}_2^2 = 
+\sum_{\substack{\abs{k-j}=1 \\ \abs{j} \leq RR_1}}(a(k)-a(j))^2 =
+\gamma^2 \sum_{\substack{\abs{k-j}=1 \\ \abs{j} \leq RR_1 \\ j,k \notin \cup_{\varrho \in \ens^*} D(\varrho)}}(b(k)-b(j))^2 + \sum_i B_i
+\end{equation}
+where
+$$
+B_i = \gamma^2 \sum_{j \in \partial D_i} (b(x_i) -b(j))^2.
+$$
+The first term on the right side of \eqref{label:eq442} is bounded above by
+$$
+\gamma^2 \sum_{\substack{\abs{k-j}=1 \\ \abs{j} \leq RR_1}} (b(k)-b(j))^2 =
+\gamma^2 \sum_{\substack{\abs{k-j}=1 \\ R_1 \leq \abs{j} \leq RR_1}} (ln\abs{j} - ln\abs{k})^2 \leq
+$$
+\begin{equation} \label{label:eq444}
+\leq \gamma^2 \sum_{r = R_1}^{RR_1} (2\pi r) \cdot 4 \cdot (ln(r+1)-ln(r))^2 \ \leq \ 
+\gamma^2 8\pi \sum_{r = R_1}^{RR_1} \frac{1}{r} \ \leq \ \gamma^2 24\pi lnR
+\end{equation}
+
+Note that $B_i=0$, unless 
+\begin{equation} \label{label:eq446}
+R_1-6d(\varrho_i) \overset{(i)}{\leq} \abs{x_i} \overset{(ii)}{\leq} RR_1 + 6d(\varrho_i),
+\end{equation}
+
+otherwise $D_i$ lies entirely outside the annulus $R_1 \leq \abs{j} \leq RR_1$, hence $b(x_i)=b(j)$ for $j \in \partial D_i$.
+Fix such i. Denote $d = min(d(\varrho_i), d(\varrho^*))$, so by (???????2.4) $ Md^\alpha \leq dist(\varrho_i, \varrho^*) $. Note that
+$$
+dist(\varrho^*, \varrho_i) \leq dist(\varrho^*, 0) + dist(0, x_i) + dist(x_i, \varrho_i) \leq R_1 + \abs{x_i} + 6d(\varrho_i)
+$$
+and using (i), (ii), $\varrho_i \in \ens^*$, and $RR_1 \leq diam(D(\varrho^*))$, we obtain
+$$
+Md^\alpha \leq dist(\varrho^*, \varrho_i) \leq R_1 + \abs{x_i} + 6d(\varrho_i) \overset{(iii)}{\leq} 2\abs{x_i} + 12d(\varrho_i) \overset{(iv)}{\leq} 2RR_1 + 24 d(\varrho_i) \leq 
+$$
+$$
+\leq 2RR_1 + 48 d(\varrho^*)  \leq 56d(\varrho^*).
+$$
+Therefore, for $\alpha > 1$ and $M$ large enough $d=d(\varrho_i)$ holds. We then get from (iii) and (iv) that
+\begin{equation} \label{label:eq448}
+\frac{M-12}{2}d(\varrho_i)^\alpha \leq \abs{x_i}
+\end{equation}
+and %TODO: why??
+$$
+\frac{M-24}{2}d(\varrho_i)^\alpha \leq RR_1.  
+$$
+Combining this with \eqref{label:eq446}, we obtain
+$$
+R_1 - \frac{12}{M-12} \abs{x_i} \leq \abs{x_i} \leq RR_1 + \frac{12}{M-12}\abs{x_i}
+$$
+and so 
+$$
+(1-\delta) R_1 \leq \abs{x_i} \leq RR_1(1+\delta),
+$$
+for some $\delta = \delta(M,\alpha)$ which tends to 0 as $M \rightarrow \infty$.
+Moreover, for $M$ large enough, we obtain from \eqref{label:eq448}
+$$
+\abs{x_i} - 6d(\varrho_i) \geq \frac{1}{2} \abs{x_i}
+$$
 \end{proof}
 
 \subsection{Proof of Theorem \eqref{thm:thm41}}
