@@ -637,9 +637,9 @@ By the definition of $a$
 \gamma^2 \sum_{\substack{\abs{k-j}=1 \\ \abs{j} \leq RR_1 \\ j,k \notin \cup_{\varrho \in \ens^*} D(\varrho)}}(b(k)-b(j))^2 + \sum_i B_i
 \end{equation}
 where
-$$
+\begin{equation} \label{label:eq443}
 B_i = \gamma^2 \sum_{j \in \partial D_i} (b(x_i) -b(j))^2.
-$$
+\end{equation}
 The first term on the right side of \eqref{label:eq442} is bounded above by
 $$
 \gamma^2 \sum_{\substack{\abs{k-j}=1 \\ \abs{j} \leq RR_1}} (b(k)-b(j))^2 =
@@ -670,7 +670,7 @@ This lemma contains several calculations, which basically show that $d(\varrho_i
 (1-\delta) R_1 \leq \abs{x_i} \leq RR_1(1+\delta),
 \end{equation}
 for some $\delta = \delta(M,\alpha)$ which tends to 0 as $M \rightarrow \infty$.
-\item 3
+\item
 \begin{equation} \label{label:eq451}
 \abs{x_i} - 6d(\varrho_i) \geq \frac{1}{2} \abs{x_i}
 \end{equation}
@@ -704,7 +704,7 @@ Moreover, for $M$ large enough, we obtain \eqref{label:eq451} from \eqref{label:
 
 
 Next, let $\ens_k^* = \{ \varrho_i \in \ens^* : 2^k \leq d(\varrho_i) < 2^{k+1} , \eqref{label:eq450}\ holds\ for\ \varrho_i \}$.
-\begin{lemma}
+\begin{lemma} \label{label:xi}
 $$
 \sum_{\varrho_i \in \ens_k^*} \abs{x_i}^{-2} \leq K_2 \frac{2^{-2\alpha k}}{M^2} lnR,
 $$
@@ -755,11 +755,40 @@ $$
 $$
 \end{proof}
 
-Now let us go back to bounding $\sum B_i$
+Now let us go back to bounding $\sum B_i$.
+Note that by lemma \eqref{lemma:appendixE2}, and by \eqref{label:eq443}, 
+$$
+B_i \leq \gamma^2 \abs{\partial D_i} max_{j \in \partial D_i}(b(x_i) - b(j))^2 \leq
+\gamma^2 20 d(\varrho_i) \cdot max_{j \in \partial D_i}(b(x_i) - b(j))^2.
+$$
+Now, as $j$ is on the outer boundary of $D_i$, and using \eqref{lemma:appendixE1}
+$$
+(b(x_i) - b(j))^2 \leq \big( ln\abs{x_i} - ln\abs{j} \big) ^ 2 \leq
+\big( ln\abs{x_i} - ln(\abs{x_i} - 6d(\varrho_i)) \big) ^ 2
+$$
+and as $\frac{lnx - ln(x-h)}{h} \leq \frac{1}{x-h}$, and using \eqref{label:eq451}
+$$
+(b(x_i) - b(j))^2 \leq 
+36 d(\varrho_i)^2 (\abs{x_i} - 6d(\varrho_i))^{-2} \leq
+144 d(\varrho_i)^2 \abs{x_i}^{-2}
+$$
+[note that we assume that $\abs{x_i} > 6d(\varrho_i)$, but we already saw it holds for $M$ large enough]. Now using lemma \eqref{label:xi}, we obtain
+$$
+\sum_{\varrho_i \in \ens^*} B_i = \sum_{k} \sum_{\varrho_i \in \ens_k^*}B_i \leq
+\sum_{k=0}^\infty \sum_{\varrho_i \in \ens_k^*} const \cdot \gamma^2 d(\varrho_i)^3 \abs{x_i}^{-2} \leq
+$$
+$$
+\leq
+\sum_{k=0}^\infty \sum_{\varrho_i \in \ens_k^*} const \cdot \gamma^2 2^{3(k+1)} \abs{x_i}^{-2} \leq 
+\frac{const}{M^2} \gamma^2 lnR \sum_{k=0}^\infty 2^{(3-2\alpha)k} \leq K(M)\gamma^2lnR
+$$
+where $K(M) \rightarrow 0$ for $M \rightarrow \infty$, and $\alpha > 3/2$.
 
-
-
-
+Finally,
+$$
+e(f_1, \beta) \leq e^{\gamma (lnR) q} exp \Big( \frac{1}{2\beta} \gamma^2 lnR \big( 24\pi + K(M) \big) \Big) = exp[-lnR \big( \gamma q - \frac{1}{2\beta}\gamma^2 d(M) \big)
+$$
+and taking $\gamma$ such that this will be minimal, we get the proposition.
 
 \end{proof}
 
