@@ -8,7 +8,7 @@
 \usepackage{amsmath, amsthm, amsopn, amssymb}
 \usepackage{enumerate, enumitem, tikz, etoolbox, intcalc, geometry, caption, subcaption, afterpage}
 \usepackage[english]{babel}
-\usepackage{mathrsfs, mathtools}
+\usepackage{mathrsfs, mathtools, mathabx}
 
 
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}%
@@ -103,6 +103,8 @@ This is a reference to \eqref{clever}.
 Let $\mathscr{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$
 
 \subsection{Notation}
+
+
 \newcommand*{\SqrsSet}{\mathscr{S}_k(\varrho)}
 \newcommand*{\SqrsSetTag}{\mathscr{S}^\prime_k(\varrho)}
 \newcommand*{\SqrsSetDtag}{\mathscr{S}^{\prime\prime}_k(\varrho)}
@@ -115,7 +117,10 @@ Let $\SqrsSet$ be a minimal collection of $2^k\times2^k$ squares covering the su
 $$\abs{\SqrsSet} = A_k(\varrho)$$
 Now we define $\SqrsSetTag$ and $\SqrsSetDtag$.
 First, in the case where $\SqrsSet$ consists of only one square and $Q(\varrho)=0$, we set $\SqrsSetTag=\emptyset$ and $\SqrsSetDtag=\emptyset$.
-In any other case, we define $\SqrsSetTag$ to be the sub-collection of those squares $s^\prime$ in $\SqrsSet$ which are far separated from other squares in $\SqrsSet$, in the sense that $$dist(s^\prime, s)\geq 2M2^{\alpha k + \alpha /2}\equiv2^{\alpha k + b}$$
+In any other case, we define $\SqrsSetTag$ to be the sub-collection of those squares $s^\prime$ in $\SqrsSet$ which are far separated from other squares in $\SqrsSet$, in the sense that 
+\begin{equation} \label{label:eq33}
+dist(s^\prime, s)\geq 2M2^{\alpha k + \alpha /2}\equiv2^{\alpha k + b}
+\end{equation}
 for all $s\in\SqrsSet$ ($s\neq s^\prime$), and define $\SqrsSetDtag := \SqrsSet \setminus \SqrsSetTag$.\\
 Denote also 
 \begin{equation} \label{label:ATagDef}
@@ -292,9 +297,13 @@ E_{loc}(\varrho, \ens) \geq D_1 A^\prime(\varrho).
 Moreover, $\bar{\varrho}$ is a charge density which depends linearly on $\varrho$ and satisfies
 \begin{enumerate}[label={\alph*)}]
 \item $Q(\bar{\varrho}) = Q(\varrho)$, and
-\item $d(\bar{\varrho}) \leq 2d(\varrho)$ (unless $\varrho$ is charged, in which case $d(\bar{\varrho}) = \infty, E_{loc}(\varrho, \ens) = \infty$).
+\item $d(\bar{\varrho}) \leq 4d(\varrho)$ (unless $\varrho$ is charged, in which case $d(\bar{\varrho}) = \infty, E_{loc}(\varrho, \ens) = \infty$).
 \end{enumerate}
 \end{thm}
+\begin{remark}
+We will later see that we actually work with a stronger condition then condition (b) above,  which is $\bar{\varrho} \subset D(\varrho)$, where $D(\varrho)$ is defined later, in section (????????????????????).
+%TODO: add section
+\end{remark}
 
 \subsection{The Charged Density}
 
@@ -458,18 +467,12 @@ i_\beta(\phi, a) = exp\Big(-\frac{i}{\beta} \sum_{\substack{\abs{k-j}=1 \\ dist(
 $$
 Note that $i_\beta(\phi+b, a) = i_\beta(\phi, a)$ for any $b$ which is constant on $\{j: dist(j,x_1) \leq RR_1\} $.
 
-$$
-C_1(\phi, \varrho^*) = e^{i\phi(f_1)} e^{i\sigma(\varrho^*)}
-$$ 
-$$
-C_2(\phi, \varrho^*) = e^{i\phi(f_2)}
-$$ 
 
 \begin{prop}[Main Renormalization Step] \label{prop:prop44}
 Under the notations above, for $\alpha > 3/2$ and M sufficiently large:
 \begin{equation} \label{label:eq44}
 \int e^{i\phi(f_1)} e^{i\phi(f_2)} e^{i\sigma(\varrho^*)} F_{\ens^*}\mida = 
-e(C_1, \beta) \int i_\beta(\phi,a) e^{i\phi(f_1)} e^{i\phi(f_2)} e^{i\sigma(\varrho^*)} F_{\ens^*}\mida
+e(f_1, \beta) \int i_\beta(\phi,a) e^{i\phi(f_1)} e^{i\phi(f_2)} e^{i\sigma(\varrho^*)} F_{\ens^*}\mida
 \end{equation}
 where
 \begin{enumerate}[label={\alph*)}]
@@ -486,6 +489,9 @@ for some constant $d(M)$, with $d(M) \rightarrow 24\pi$, as $M\rightarrow \infty
 
 \end{enumerate}
 \end{prop}
+\begin{remark}
+Note that $i_\beta(\phi,a) e^{i\phi(f_1)} = e^{i\phi(\widebar{f_1})}$, where $\widebar{f_1}$ is also a linear transformation of $\varrho^*$, with $supp(\widebar{f_1}) \subset R\Omega_1$.
+\end{remark}
 \subsubsection{Connected Components of $\bigcup_{\varrho \in \ens^*}D(\varrho)$}
 Let $\ens^\prime$ be some sub-ensemble of $\ens$, and let $D_i$ be the connected components of $\bigcup_{\varrho \in \ens^\prime}D(\varrho)$ (we say that $D(\varrho_1), D(\varrho_2)$ are connected if $D(\varrho_1)\cap D(\varrho_2)\neq\emptyset$). We express each $D_i$ as a union of $D(\varrho)$, $\varrho \in S_i \subset \ens^\prime$. For each $S_i$, denote by $\varrho_i \in S_i$ a density with maximal diameter.
 \begin{remark}
@@ -575,9 +581,9 @@ b(j) =
 {0,}{\abs{j} \geq RR_1.}
 $$
 We make the following change of variable:
-$$
+\begin{equation} \label{label:eqVarChange}
 \phi(j) \longmapsto \phi(j) + ia(j),
-$$
+\end{equation}
 where $a$ is a real-valued function defined in terms of $b$, using $D_i$, the connected components of $\bigcup_{\varrho \in \ens^*}D(\varrho)$:
 \begin{equation} \label{label:eq437}
 a(j) = 
@@ -793,9 +799,48 @@ and taking $\gamma$ such that this will be minimal, we get the proposition.
 \end{proof}
 
 
-
-
-
 \subsection{Proof of Theorem \eqref{thm:thm41}}
+
+\begin{proof}[Proof of Theorem \eqref{thm:thm41}]
+We iteratively apply Proposition \eqref{prop:lem418} and Proposition \eqref{prop:prop44} to  multipole densities $\varrho \in \ens$, starting with densities with smaller diameters. 
+
+Let some $\varrho^* \in \ens$ be such that $2^p \leq d(\varrho^*) < 2^{p+1}$. In order to establish the theorem, we need only to show
+$$
+K(\varrho^*)\int e^{i\phi(\varrho^*)}F_{\ens^*}\mida = z(\beta, \varrho^*) \int e^{i\phi(\widebar{\varrho^*})}F_{\ens^*}\mida
+$$
+where $z(\beta, \varrho^*)$ and $\widebar{\varrho^*}$ satisfy the conditions in Theorem \eqref{thm:thm41}, and $\widebar{\varrho^*} \subset D(\varrho^*)$.
+
+\begin{remark}
+The reason for iteratively working with the densities, starting with the ones with smaller diameter, is that if we start with a large diameter density $\varrho_{big}$, we will not be able to use Proposition \eqref{prop:prop44} while working with $\varrho^*$. The reason is that in this case we have grown $\varrho_{big}$ to $\widebar{\varrho_{big}}$, and now the variable change in \eqref{label:eqVarChange} might affect $j \in supp(\widebar{\varrho_{big}})$ (the distance between $\varrho^*$ and $\varrho_{big}$ depends only on $d(\varrho^*)$, but the growth of $\varrho_{big}$ depends on $d(\varrho_{big})$, and therefore the distance between $\varrho^*$ and $\widebar{\varrho_{big}}$ might even be 0, and not bounded below as required in the proof of Proposition \eqref{prop:prop44}). If we start with the smaller diameter densities, and continue to the larger ones, we make sure that we can always use Proposition \eqref{prop:prop44}).
+\end{remark}
+
+\newcommand*{\SqrsSetOf}[2]{\mathscr{S}_{#1}(#2)}
+\newcommand*{\SqrsSetTagOf}[2]{\mathscr{S}^\prime_{#1}(#2)}
+
+Let $M$ be large enough such that $d(M) \leq 25\pi$.
+
+We start by applying Proposition \eqref{prop:lem418}. It then suffices to show
+$$
+E_{loc}(\varrho^*, \ens) - \frac{1}{2}E_0(\varrho^*) \geq D\sum_{k=1}^\infty \abs{\SqrsSetTagOf{k}{\varrho^*}}.
+$$
+Let $k_0$ be the smallest integer such that $\SqrsSetTagOf{k_0}{\varrho^*}$ is non-empty. Let $s\in \SqrsSetTagOf{k_0}{\varrho^*}$. Recall that $\varrho \cap s$ is charged, and isolated in the sense of \eqref{label:eq33}. We suppose, to simplify notation, that the square $s$ is centred at the origin. Let $\bar{s} = 2s$ (which is in $\SqrsSetOf{k_0+1}{\varrho^*}$ for M large enough, and often also in $\SqrsSetTagOf{k_0+1}{\varrho^*}$).
+Circumscribe $s$ by a disc $\Omega_1$ of radius $R_1 = \sqrt{2} \cdot 2^{k_0}$, and take $R = \sqrt{2}$.
+We define
+$$
+f_1 = R_0(\varrho^* \cap s) = R_0(\varrho^* \cap \bar{s})
+$$
+and
+$$
+f_2 = R_0(\varrho^*) - f_1.
+$$
+Using Proposition \eqref{prop:prop44}, we obtain
+$$
+e(f_1, \beta) \leq e^{-(ln2)\frac{\beta}{25\pi}q^2},
+$$
+where $\abs{q} \geq 1$ holds for $q = \sum_{k \in \Omega_1} f_1(k) = \sum_{k \in \Omega_1} \varrho^*(k)$ (as $Q(R_0(\varrho^* \cap s)) = Q(\varrho^* \cap s)$).
+%q := \sum_{k \in \Omega_1}\varrho^*(k)
+
+
+\end{proof}
 
 \end{document}
