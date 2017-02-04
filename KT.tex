@@ -455,7 +455,7 @@ $$
 $$
 Let $\Omega_2$ be some other subset of $D(\varrho^*)$, disjoint from $\Omega_1$, such that
 $$
-dist(x_1, \partial\Omega_2) \geq RR_1, \ \ where \ (1 < R) \ and\ (RR_1 \leq diam(D(\varrho^*))).
+dist(x_1, \partial\Omega_2) \geq RR_1, \ \ where \ \Big(\frac{\sqrt{2}}{1+1/4} < R \Big) \ and\ \big(RR_1 \leq diam(D(\varrho^*))\big).
 $$ 
 Let $f_j$ be some linear transformations of $\varrho^*$, with $suppf_j \subset \Omega_j$, $j=1,2$, such that also $\sum_{k \in \Omega_i}f_j(k) = \sum_{k \in \Omega_i}\varrho^*(k)$, and denote
 \begin{equation} \label{label:qdef}
@@ -607,7 +607,7 @@ where the last inequality follows from \eqref{lemma:appendixE2}. Therefore $\fra
 $$
 diam(D_i) \leq 5d(\varrho_i) \leq \frac{20}{M-20} R_1 < (R-1)R_1
 $$
-for $M$ large enough, and $R>????????????????????????????$.
+for $M$ large enough, and $R>\frac{\sqrt{2}}{1+1/4}$ (we could have taken any bound $> 1$ to $R$, but it has to be $> 1$, and this bound is a convenient bound, as we shall see later).
 %TODO: make sure to bound R from below. the bound doesn't have to be sqrt(2), but it has to be constant > 1. if not - this remark is false.
 \item The choice of a(j) is such that the change of variable will be constant in $D(\varrho)$ for every $\varrho \neq \varrho^*$.\\
 \end{enumerate}
@@ -817,12 +817,12 @@ The reason for iteratively working with the densities, starting with the ones wi
 \newcommand*{\SqrsSetOf}[2]{\mathscr{S}_{#1}(#2)}
 \newcommand*{\SqrsSetTagOf}[2]{\mathscr{S}^\prime_{#1}(#2)}
 
-Let $M$ be large enough such that $d(M) \leq 25\pi$.
-
+Let $M$ be large enough such that $d(M) \leq 25\pi$. 
 We start by applying Proposition \eqref{prop:lem418}. It then suffices to show
-$$
+\begin{equation} \label{label:eq458}
 E_{loc}(\varrho^*, \ens) - \frac{1}{2}E_0(\varrho^*) \geq D\sum_{k=1}^\infty \abs{\SqrsSetTagOf{k}{\varrho^*}}.
-$$
+\end{equation}
+
 Let $k_0$ be the smallest integer such that $\SqrsSetTagOf{k_0}{\varrho^*}$ is non-empty. Let $s\in \SqrsSetTagOf{k_0}{\varrho^*}$. Recall that $\varrho \cap s$ is charged, and isolated in the sense of \eqref{label:eq33}. We suppose, to simplify notation, that the square $s$ is centred at the origin. Let $\bar{s} = 2s$ (which is in $\SqrsSetOf{k_0+1}{\varrho^*}$ for M large enough, and often also in $\SqrsSetTagOf{k_0+1}{\varrho^*}$).
 Circumscribe $s$ by a disc $\Omega_1$ of radius $R_1 = \sqrt{2} \cdot 2^{k_0}$, and take $R = \sqrt{2}$.
 We define
@@ -835,12 +835,26 @@ f_2 = R_0(\varrho^*) - f_1.
 $$
 Using Proposition \eqref{prop:prop44}, we obtain
 $$
-e(f_1, \beta) \leq e^{-(ln2)\frac{\beta}{25\pi}q^2},
+e(f_1, \beta) \leq e^{-(ln2)\frac{\beta}{4\cdot 25\pi}q^2},
 $$
-where $\abs{q} \geq 1$ holds for $q = \sum_{k \in \Omega_1} f_1(k) = \sum_{k \in \Omega_1} \varrho^*(k)$ (as $Q(R_0(\varrho^* \cap s)) = Q(\varrho^* \cap s)$).
-%q := \sum_{k \in \Omega_1}\varrho^*(k)
+where $\abs{q} \geq 1$ holds for $q = \sum_{k \in \Omega_1} f_1(k) = \sum_{k \in \Omega_1} \varrho^*(k)$ (as $Q(R_0(\varrho^* \cap s)) = Q(\varrho^* \cap s)$). Also, $supp(\widebar{f_1}) \subset \bar{s} \in \SqrsSetOf{k_0+1}{\varrho^*}$.
 
+We continue this procedure for other $s^\prime \in \SqrsSetTagOf{k_0}{\varrho^*}$, and proceed to $\SqrsSetTagOf{k}{\varrho^*}, k > k_0$. If for example $\bar{s} \in \SqrsSetTagOf{k_0+1}{\varrho^*}$, this can be done the same. There is one important case which we need to address. 
 
+Assume we are working with some $s \in \SqrsSetTagOf{k_1}{\varrho^*}$ (assume again $s$ is centred at the origin), and denote by $R_0^\prime$ the linear transformation done so far to $s \cap \varrho^*$. Note that $supp(R_0^\prime)$ might be larger than $s$, in the case which $s$ contains several $s_i \in \SqrsSetTagOf{k_i}{\varrho^*}, k_i<k_1$, and so we cannot repeat the procedure exactly as before. However note that we can bound the leakage of $R_1$ from outside $s$. Let $s_1, s_2 \in \SqrsSetTagOf{k_2}{\varrho^*}, k_2<k_1$, then by \eqref{label:eq33}
+$$
+\sqrt{2} 2^{k_1} \geq dist(s_1, s_2) \geq 2M2^{\alpha k_2 + \alpha /2} > \sqrt{2} M 2^{k_2}
+$$
+and so if we take $M > 2^\ell$ (for some $\ell \geq 2$), then $k_1 > k_2 + \ell$. Now taking $s^\prime = s \cdot (1+2^{-\ell})$, $R_1 = \sqrt{2} 2^{k_1} (1+2^{-\ell})$, and $R = \sqrt{2}/(1+2^{-\ell})$ allows us to do the same procedure as before.
+
+\begin{remark}
+Note that we always maintain the invariant $RR_1 \leq Diam(D(\varrho^*))$, as while working with some $s \in \SqrsSetTagOf{k}{\varrho^*}$, there is another $s^\prime \in \SqrsSetOf{k}{\varrho^*}$, which is far enough from $s$.
+\end{remark}
+
+Now note that this iterative procedure clearly assigns every $s \in \SqrsSetTagOf{k}{\varrho^*}$ a factor smaller than $e^{-\beta D q^2}$, with $D = (ln2) / (200\pi)$ and $\abs{q} \geq 1$, and so \eqref{label:eq458} holds.
+
+Doing the same for every $\varrho \in \ens$ yields the proof.
 \end{proof}
+%TODO: add here the figure from the original article
 
 \end{document}
