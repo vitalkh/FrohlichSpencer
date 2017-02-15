@@ -67,7 +67,30 @@
 \begin{document}
 \section{Introduction}\label{sec:introduction}
 \newcommand*{\mida}{d\mu_{\text{\tiny$\beta$}}(\phi)}
+\newcommand*{\midaLambda}{d\mu_{\text{\tiny$\beta, \Lambda$}}(\phi)}
 \newcommand*{\midar}{d\mu_\beta(\phi)}
+
+\subsection{Integer Valued Gaussian Measure}
+In this section we define explicitly the measure we use.
+First, let $\Lambda_0$ be some finite array of sites contained in the simple square lattice $\mathbb{Z}^2$. Denote by $\midaLambda$ the Gaussian measure
+$$
+\midaLambda = exp\Big[-\frac{1}{2\beta}<\phi, (-\Delta_\Lambda)\phi>\Big]d\phi(k_0)\prod_{k \in \Lambda}d\phi(k),
+$$
+where:
+\begin{enumerate}
+\item $\beta > 0$.
+\item $\Lambda_0 \subseteq \Lambda \subset \mathbb{Z}^2$ is some finite square.
+\item $k_0 \in \Lambda$ and $d\phi(k_0)$ is the Lebesgue measure on $[-\pi,\pi)$. Note that $\midaLambda$ is independent of the choice of $k_0$.
+\item $d\phi(k)$ is the Lebesgue measure on $\mathbb{R}$ for any $k_0 \neq k \in \Lambda$.
+\item $\Delta_\Lambda$ is the graph Laplacian with two possible boundary conditions:
+\begin{enumerate}
+\item Free boundary condition. The graph vertices are the sites in $\Lambda$, and the edges are only between sites $k_1, k_2 \in \Lambda$, with $dist(k_1, k_2) = 1$. In this case we assume that $dist(\Lambda_0, \partial\Lambda)$ is large compared to $diam(\Lambda_0)$ ($\partial\Lambda$ is the outer boundary of $\Lambda$). 
+\item Periodic boundary condition. In this case we assume $\Lambda = \Lambda_0$. The graph vertices are the sites in $\Lambda$, and the edges are between sites $k_1, k_2 \in \Lambda$, with $dist(k_1, k_2) = 1$, and between "periodic" neighbours.
+\end{enumerate}
+\end{enumerate}
+\begin{remark}
+For notational simplicity, we denote $\mida = \midaLambda$, as $\Lambda, \Lambda_0$ are constant.
+\end{remark}
 
 \subsection{The Coulomb Gas}
 
@@ -99,53 +122,59 @@ This is a reference to \eqref{clever}.
 \section{Chapter2}\label{sec:chap2}
 Maybe a good title: State Representation as a Convex Combination 
 \newcommand*{\ens}{\mathscr{N}}
-
+Let $\mathscr{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$
 
 
 \section{Chapter3}\label{sec:chap3}
-Let $\mathscr{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$
-
-\subsection{Notation}
-
-
 \newcommand*{\SqrsSet}{\mathscr{S}_k(\varrho)}
 \newcommand*{\SqrsSetTag}{\mathscr{S}^\prime_k(\varrho)}
 \newcommand*{\SqrsSetDtag}{\mathscr{S}^{\prime\prime}_k(\varrho)}
 \newcommand*{\SqrsSetGamma}{\mathscr{S}_{\gamma(k)}(\varrho)}
 \newcommand*{\SqrsSetTagGamma}{\mathscr{S}^\prime_{\gamma(k)}(\varrho)}
 \newcommand*{\SqrsSetDtagGamma}{\mathscr{S}^{\prime\prime}_{\gamma(k)}(\varrho)}
-First, denote $b = \frac{\alpha}{2} + 1 + \log_2(M)$. Also, denote $\gamma(k)=[\alpha^{-1}(k-b-2)]$, where $[x]$ denotes the integer part of x. 
 
 Let $\SqrsSet$ be a minimal collection of $2^k\times2^k$ squares covering the support of $\varrho$. By minimal we mean that $\SqrsSet$ is chosen such that its cardinality, $\abs{\SqrsSet}$, is minimal, i.e. 
-$$\abs{\SqrsSet} = A_k(\varrho)$$
+$$\abs{\SqrsSet} = A_k(\varrho).$$
+The purpose of this chapter is to bound 
+$$
+A(\varrho) = \sum_{k=0}^{n(\varrho)} \abs{\SqrsSet}
+$$
+using $\sum \abs{\SqrsSetTag}$ for some $\SqrsSetTag \subset \SqrsSet$. The bound holds for any $\varrho$ of finite support, and the proof is rather technical.
+
+\subsection{Notation}
+
+
+
+First, denote $b = \frac{\alpha}{2} + 1 + \log_2(M)$. Also, denote $\gamma(k)=[\alpha^{-1}(k-b-2)]$, where $[x]$ denotes the integer part of x. 
+
+
 Now we define $\SqrsSetTag$ and $\SqrsSetDtag$.
 First, in the case where $\SqrsSet$ consists of only one square and $Q(\varrho)=0$, we set $\SqrsSetTag=\emptyset$ and $\SqrsSetDtag=\emptyset$.
 In any other case, we define $\SqrsSetTag$ to be the sub-collection of those squares $s^\prime$ in $\SqrsSet$ which are far separated from other squares in $\SqrsSet$, in the sense that 
 \begin{equation} \label{label:eq33}
 dist(s^\prime, s)\geq 2M2^{\alpha k + \alpha /2}\equiv2^{\alpha k + b}
 \end{equation}
-for all $s\in\SqrsSet$ ($s\neq s^\prime$), and define $\SqrsSetDtag := \SqrsSet \setminus \SqrsSetTag$.\\
-Denote also 
-\begin{equation} \label{label:ATagDef}
-A^\prime(\varrho) = A_0(\varrho) + \sum_{k=1}^\infty \abs{\SqrsSetTag}
-\end{equation}
+for all $s\in\SqrsSet$ ($s\neq s^\prime$), and define $\SqrsSetDtag := \SqrsSet \setminus \SqrsSetTag$.
 
-\begin{remarks}
-\begin{enumerate}
-\item For $k > log_2 d(\varrho)$, $\SqrsSet$ consists of a single square covering all of $supp(\varrho)$. Hence, if $Q(\varrho) = 0$, we get $\SqrsSetTag=\emptyset$, so that the sum \eqref{label:ATagDef} terminates at some $k=k(\varrho) \leq log_2d(\varrho)$ (and if $\varrho$ is charged, we get $k(\varrho)=\infty$, $\abs{\SqrsSetTag} = 1$, for all $k > log_2 d(\varrho)$).
-\item We note that, by (???? Thm2.1), $s\cap\varrho$ is charged for each $s\in\SqrsSetTag$. This fact will be used later, for the proof of (???????).
-\end{enumerate}
-\end{remarks}
+\begin{remark}
+We note that, by (???? Thm2.1), $s\cap\varrho$ is charged for each $s\in\SqrsSetTag$. This fact will be used later, for the proof of (???????).
+\end{remark}
 
 
 
 \subsection{Upper bound on $A(\varrho)$}
 \begin{prop} \label{prop:ABound}
 \begin{equation} \label{label:eq31}
-A(\varrho) \leq D_2 A^\prime(\varrho)
+A(\varrho) \leq D_1 A_0(\varrho) + D_2 \sum_{k=1}^{\infty} \abs{\mathscr{S}^\prime_{k}(\varrho)}
 \end{equation}
-for some finite constant $D_2$ independent of $\varrho$ and $\mathscr{N}$.
+for some finite constants $D_1, D_2$ independent of $\varrho$ and $\mathscr{N}$.
 \end{prop}
+
+\begin{remark}
+For $k > log_2 d(\varrho)$, $\SqrsSet$ consists of a single square covering all of $supp(\varrho)$. Hence, if $Q(\varrho) = 0$, we get $\SqrsSetTag=\emptyset$ for such $k$, and therefore the sum 
+$$\sum_{k=1}^\infty \abs{\SqrsSetTag}$$
+terminates at some $k=k(\varrho) \leq log_2d(\varrho)$ (and if $\varrho$ is charged, we get $k(\varrho)=\infty$, $\abs{\SqrsSetTag} = 1$, for all $k > log_2 d(\varrho)$).
+\end{remark}
 
 
 \begin{lemma} \label{lemma:GammaReason}
@@ -859,5 +888,8 @@ Now note that this iterative procedure clearly assigns every $s \in \SqrsSetTagO
 Doing the same for every $\varrho \in \ens$ yields the proof.
 \end{proof}
 %TODO: add here the figure from the original article
+
+\section{Chap 5??????????????}
+\subsection{A Bound on $z(\beta, \varrho)$}
 
 \end{document}
