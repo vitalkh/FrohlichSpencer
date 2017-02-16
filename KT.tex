@@ -141,8 +141,9 @@ where the expectation is due to the measure defined in \eqref{label:eq116}, and 
 Recall definition \eqref{label:lambdahat}.
 We choose a sequence $\{\xi_q\}_{q=1}^N$ of positive numbers with
 $$
-\sum_{q=1}^N \xi_q = 1, \ \ \ and \ \ \ \abs{\xi_q}^{-1} < const e^{\eta^\prime q^2}
+\sum_{q=1}^N \xi_q = 1 
 $$
+%, \ \ \ and \ \ \ \abs{\xi_q}^{-1} < const e^{\eta^\prime q^2}
 for some finite and positive $\eta^\prime$.
 \begin{remark}
 An explicit choice of $\{\xi_q\}_{q=1}^N$ is made later, in (???????????).
@@ -154,9 +155,9 @@ $$
 \hat{\lambda}_N(\phi) = \sum_{q=1}^N \xi_q(1 + z(q)cos(q\phi)),
 $$
 where $z(q) = 2 \xi_q^{-1} \lambda(q)$. Hence 
-$$
+\begin{equation} \label{label:eq52}
 \prod_{j \in \Lambda_0} \hat{\lambda}_N(\phi(j)) = \sum_{\vec{q}} \xi(\vec{q}) \prod_{j \in \Lambda_0} \big[ 1 + z(q_j)cos(q_j\phi(j)) \big],
-$$
+\end{equation}
 with
 $$
 \vec{q} = (q_j)_{j \in \Lambda_0}, \ \ \ \xi(\vec{q}) = \prod \xi_{q_j}.
@@ -187,7 +188,7 @@ $$
 
 \subsection{Main Result}
 Let $M > 1$ and $3/2 < \alpha < 2$ be some constants. $M$ will be chosen later to be $M \gg 1$.
-\begin{thm}
+\begin{thm} \label{thm:21}
 There exists a family $\mathscr{F}_{\vec{q}}$ of ensembles, $\ens$, such that
 \begin{equation} \label{label:eq21}
 \prod_{j \in \Lambda_0} \big[ 1 + z(q_j)cos(q_j\phi(j)) \big] = 
@@ -213,14 +214,26 @@ dist(\varrho_1, \varrho - \varrho_1) \geq 2Md(\varrho_1)^\alpha
 then $\varrho_1$ is charged.
 \end{enumerate}
 Finally, the constants $K(\varrho)$ on the right side of \eqref{label:eq21} satisfy, for all neutral $\varrho$,
-$$
+\begin{equation} \label{label:eq26}
 0 < K(\varrho) \leq \prod_{j \in supp\varrho} z(q_j)e^{C \cdot A(\varrho)},
-$$
+\end{equation}
 for some constant $C$, where
-$$
+\begin{equation} \label{label:eq27}
 A(\varrho) = \sum_{k=0}^{n(\varrho)} A_k(\varrho)
-$$
+\end{equation}
 with $n(\varrho) = \lceil \log_2(Md(\varrho)^\alpha) \rceil$.
+%TODO is it really d(\varrho) and not d(\varrho) + 1?
+
+\begin{cor}
+There exists a family $\mathscr{F}$ = $\mathscr{F}_{\Lambda_0}$ such that
+\begin{equation} \label{label:eq540}
+\prod_{j \in \Lambda_0} \hat{\lambda}_N(\phi(j)) = \sum_{\ens \in \mathscr{F}} c_\ens \prod_{\varrho \in \ens} \big[ 1 + K(\varrho)cos(\phi(\varrho)) \big],
+\end{equation}
+where $c_\ens > 0$, $\sum c_\ens = 1$, and $\varrho, \ens$ are as in Theorem \eqref{thm:21}.
+\end{cor}
+\begin{proof}
+The proof follows directly from Theorem \eqref{thm:21} and equation \eqref{label:eq52}.
+\end{proof}
 
 \end{thm}
 
@@ -231,6 +244,10 @@ with $n(\varrho) = \lceil \log_2(Md(\varrho)^\alpha) \rceil$.
 \newcommand*{\SqrsSetGamma}{\mathscr{S}_{\gamma(k)}(\varrho)}
 \newcommand*{\SqrsSetTagGamma}{\mathscr{S}^\prime_{\gamma(k)}(\varrho)}
 \newcommand*{\SqrsSetDtagGamma}{\mathscr{S}^{\prime\prime}_{\gamma(k)}(\varrho)}
+
+\newcommand*{\SqrsSetOf}[2]{\mathscr{S}_{#1}(#2)}
+\newcommand*{\SqrsSetTagOf}[2]{\mathscr{S}^\prime_{#1}(#2)}
+
 
 Let $\SqrsSet$ be a minimal collection of $2^k\times2^k$ squares covering the support of $\varrho$. By minimal we mean that $\SqrsSet$ is chosen such that its cardinality, $\abs{\SqrsSet}$, is minimal, i.e. 
 $$\abs{\SqrsSet} = A_k(\varrho).$$
@@ -417,22 +434,23 @@ Let $\ens$ be an ensemble satisfying properties (a)-(c) of Theorem (????????). F
 \int\prod_{\varrho \in \ens}[1 + K(\varrho)cos(\phi(\varrho) + \sigma(\varrho))]\mida = 
 \int\prod_{\varrho \in \ens}[1 + z(\beta,\varrho)cos(\phi(\bar{\varrho}) + \sigma(\varrho))]\mida, 
 \end{equation}
-where
-$$
-z(\beta,\varrho) = K(\varrho)exp[-\beta E_{loc}(\varrho, \ens)]
-$$
-and $E_{loc}(\varrho, \ens)$ is some function of $\varrho$ satisfying 
-\begin{equation}
-E_{loc}(\varrho, \ens) \geq D_1 A^\prime(\varrho).
+where for each neutral $\varrho$,
+\begin{equation} \label{eqEloc}
+z(\beta,\varrho) \leq K(\varrho)exp\Big[-\beta \Big(\frac{1}{2}E_0(\varrho) + D_3\sum_{k=1}^\infty \abs{\SqrsSetTagOf{k}{\varrho}}\Big)\Big],
+\end{equation}
+with $D_3$ some constant, and 
+\begin{equation} \label{eqE0}
+E_0(\varrho) = 1/8\sum\varrho(j)^2. 
 \end{equation}
 Moreover, $\bar{\varrho}$ is a charge density which depends linearly on $\varrho$ and satisfies
 \begin{enumerate}[label={\alph*)}]
 \item $Q(\bar{\varrho}) = Q(\varrho)$, and
-\item $d(\bar{\varrho}) \leq 4d(\varrho)$ (unless $\varrho$ is charged, in which case $d(\bar{\varrho}) = \infty, E_{loc}(\varrho, \ens) = \infty$).
+\item $d(\bar{\varrho}) \leq 4d(\varrho)$.
 \end{enumerate}
+Also, for the charged density $\varrho_c \in \ens$, we have $z(\beta, \varrho_c)=0$.
 \end{thm}
 \begin{remark}
-We will later see that we actually work with a stronger condition then condition (b) above,  which is $\bar{\varrho} \subset D(\varrho)$, where $D(\varrho)$ is defined later, in section (????????????????????).
+We will see later that we actually work with a stronger condition then condition (b) above,  which is $\bar{\varrho} \subset D(\varrho)$, where $D(\varrho)$ is defined later, in section (????????????????????).
 %TODO add section
 \end{remark}
 
@@ -444,7 +462,7 @@ We start by decomposing the support of a charge density $\varrho \in \ens$ into 
 $$
 R_0\varrho(j) := \varrho_2(j) + 1/4\sum_{\abs{k-j}=1}\varrho_1(k).
 $$
-Also, denote $E_0(\varrho) = 1/8\sum\varrho(j)^2$. By an appropriate choice of $\Omega_1$ we have
+By an appropriate choice of $\Omega_1$ we have
 \begin{equation} \label{label:lab419}
 E_0(\varrho_1) \geq \frac{1}{2} E_0(\varrho).
 \end{equation}
@@ -945,13 +963,11 @@ where $z(\beta, \varrho^*)$ and $\widebar{\varrho^*}$ satisfy the conditions in 
 The reason for iteratively working with the densities, starting with the ones with smaller diameter, is that if we start with a large diameter density $\varrho_{big}$, we will not be able to use Proposition \eqref{prop:prop44} while working with $\varrho^*$. The reason is that in this case we have grown $\varrho_{big}$ to $\widebar{\varrho_{big}}$, and now the variable change in \eqref{label:eqVarChange} might affect $j \in supp(\widebar{\varrho_{big}})$ (the distance between $\varrho^*$ and $\varrho_{big}$ depends only on $d(\varrho^*)$, but the growth of $\varrho_{big}$ depends on $d(\varrho_{big})$, and therefore the distance between $\varrho^*$ and $\widebar{\varrho_{big}}$ might even be 0, and not bounded below as required in the proof of Proposition \eqref{prop:prop44}). If we start with the smaller diameter densities, and continue to the larger ones, we make sure that we can always use Proposition \eqref{prop:prop44}).
 \end{remark}
 
-\newcommand*{\SqrsSetOf}[2]{\mathscr{S}_{#1}(#2)}
-\newcommand*{\SqrsSetTagOf}[2]{\mathscr{S}^\prime_{#1}(#2)}
 
 Let $M$ be large enough such that $d(M) \leq 25\pi$. 
-We start by applying Proposition \eqref{prop:lem418}. It then suffices to show
+We start by applying Proposition \eqref{prop:lem418}, which gives us the renormalization factor $exp[-\beta/2E_0(\varrho^*)]$ in \eqref{eqEloc}. It then suffices to establish the renormalization factor 
 \begin{equation} \label{label:eq458}
-E_{loc}(\varrho^*, \ens) - \frac{1}{2}E_0(\varrho^*) \geq D\sum_{k=1}^\infty \abs{\SqrsSetTagOf{k}{\varrho^*}}.
+exp\Big[-\beta D_3\sum_{k=1}^\infty \abs{\SqrsSetTagOf{k}{\varrho^*}}\Big].
 \end{equation}
 
 Let $k_0$ be the smallest integer such that $\SqrsSetTagOf{k_0}{\varrho^*}$ is non-empty. Let $s\in \SqrsSetTagOf{k_0}{\varrho^*}$. Recall that $\varrho \cap s$ is charged, and isolated in the sense of \eqref{label:eq33}. We suppose, to simplify notation, that the square $s$ is centred at the origin. Let $\bar{s} = 2s$ (which is in $\SqrsSetOf{k_0+1}{\varrho^*}$ for M large enough, and often also in $\SqrsSetTagOf{k_0+1}{\varrho^*}$).
@@ -982,13 +998,62 @@ and so if we take $M > 2^\ell$ (for some $\ell \geq 2$), then $k_1 > k_2 + \ell$
 Note that we always maintain the invariant $RR_1 \leq Diam(D(\varrho^*))$, as while working with some $s \in \SqrsSetTagOf{k}{\varrho^*}$, there is another $s^\prime \in \SqrsSetOf{k}{\varrho^*}$, which is far enough from $s$.
 \end{remark}
 
-Now note that this iterative procedure clearly assigns every $s \in \SqrsSetTagOf{k}{\varrho^*}$ a factor smaller than $e^{-\beta D q^2}$, with $D = (ln2) / (200\pi)$ and $\abs{q} \geq 1$, and so \eqref{label:eq458} holds.
+Now note that this iterative procedure clearly assigns every $s \in \SqrsSetTagOf{k}{\varrho^*}$ a factor smaller than $e^{-\beta D q^2}$, with $D = (ln2) / (200\pi)$ and $\abs{q} \geq 1$, and so we have established the renormalization factor \eqref{label:eq458}.
 
 Doing the same for every $\varrho \in \ens$ yields the proof.
 \end{proof}
 %TODO add here the figure from the original article
 
-\section{Chap 5??????????????}
-\subsection{A Bound on $z(\beta, \varrho)$}
+\section{Chapter 5??????????????}
+\subsection{A Useful Bound on $z(\beta, \varrho)$}
+\begin{lemma}
+If $\lambda: \mathbb{N} \rightarrow \mathbb{R}$ satisfies condition $\lambda$ (see \eqref{label:lambdahat}), then there exists a finite constant $\beta(\lambda)$ such that for all $\beta \geq \beta_0$
+\begin{equation}
+z(\beta, \varrho) \leq \exp[-c_1\beta \norm{\varrho}_2^2] \cdot \exp[-(c_2\beta-b) \log_2(d(\varrho) + 1)],
+\end{equation}
+where $\norm{\varrho}_2^2 = \sum_j \varrho(j)^2$, and $c_1, c_2, b$ are some constants such that $0 < c_2, b < \infty$, and $0 < c_1 < 1/16$ can be arbitrarily close to $1/16$.
+\end{lemma}
+\begin{proof}
+From \eqref{eqEloc} and \eqref{label:eq26} we obtain
+$$
+z(\beta,\varrho) \leq \prod_{j \in supp\varrho} z(q_j) \exp\Big[C \cdot A(\varrho)-\beta \Big(\frac{1}{2}E_0(\varrho) + D_3\sum_{k=1}^\infty \abs{\SqrsSetTagOf{k}{\varrho}}\Big)\Big].
+$$
+Now, using \eqref{label:eq31}, \eqref{eqE0}, and $A_0(\varrho) \leq \norm{\varrho}_2^2$, we obtain
+$$
+z(\beta,\varrho) \leq \prod_{j \in supp\varrho} z(q_j) \exp\Big[
+(C-\frac{\beta D_3}{D_2})A(\varrho) - 
+\beta \Big(\frac{1}{16} - \frac{D_3D_1}{D_2}\Big) \norm{\varrho}_2^2
+\Big].
+$$
+Note that $D_1, D_2$ can be chosen such that $\frac{D_3D_1}{D_2} < 1/16$ and arbitrarily close to 0.
+
+Using \eqref{label:eq27}, we obtain
+$$
+A(\varrho) \geq 1 \cdot (n(\varrho) - [\log_2d(\varrho)]) + 2 \cdot [\log_2d(\varrho)] \geq \log_2M + \alpha\log_2d(\varrho) + \log_2(\varrho) - 1 \geq
+$$
+$$
+\geq \log_2(d(\varrho) + 1),
+$$
+for $M$ large enough ($[x]$ is the integer part of $x$).
+
+The proof now follows by choosing $\beta_0 > CD_2/D_3$ 
+%TODO check again
+\end{proof}
+
+
+
 
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
