@@ -186,14 +186,42 @@ dist(\varrho_1, \varrho_2) > 2^n.
 $$
 
 \subsection{Main Result}
+Let $M > 1$ and $3/2 < \alpha < 2$ be some constants. $M$ will be chosen later to be $M \gg 1$.
 \begin{thm}
 There exists a family $\mathscr{F}_{\vec{q}}$ of ensembles, $\ens$, such that
-\begin{equation}
+\begin{equation} \label{label:eq21}
 \prod_{j \in \Lambda_0} \big[ 1 + z(q_j)cos(q_j\phi(j)) \big] = 
 \sum_{\ens \in \mathscr{F}_{\vec{q}}} c_\ens^\prime \prod_{\varrho \in \ens} (1+K(\varrho)cos(\phi(\varrho)),
 \end{equation}
-where $c_\ens^\prime > 0$, $\sum_\ens c_\ens^\prime = 1$, and each $\ens \in \mathscr{F}_{\vec{q}}$ has the following properties:
-%TODO finish writing
+where $c_\ens^\prime > 0$, $\sum_\ens c_\ens^\prime = 1$, and $\varrho \in \ens$ is a charge density with the property that $\varrho(j)=\pm q_j$. Each $\ens \in \mathscr{F}_{\vec{q}}$ has the following properties:
+\begin{enumerate}[label={\alph*)}]
+\item All densities $\varrho \in \ens$ are neutral, except possibly one, $\varrho_c$, which is charged.
+\item 
+\begin{equation} \label{eq24}
+dist(\varrho_1, \varrho_2) \geq M[min(d(\varrho_1), d(\varrho_2))]^\alpha
+\end{equation}
+for all $\varrho_1, \varrho_2 \in \ens, \varrho_1 \neq \varrho_2$. Moreover, if $\ens$ contains a charged density $\varrho_c$, then
+$$
+dist(\varrho, \varrho_c) \geq M[d(\varrho)]^\alpha
+$$
+for all $\varrho \in \ens, \varrho \neq \varrho_c$.
+\item
+If $\varrho_1 \subset \varrho \in \ens$ is such that
+\begin{equation}
+dist(\varrho_1, \varrho - \varrho_1) \geq 2Md(\varrho_1)^\alpha
+\end{equation}
+then $\varrho_1$ is charged.
+\end{enumerate}
+Finally, the constants $K(\varrho)$ on the right side of \eqref{label:eq21} satisfy, for all neutral $\varrho$,
+$$
+0 < K(\varrho) \leq \prod_{j \in supp\varrho} z(q_j)e^{C \cdot A(\varrho)},
+$$
+for some constant $C$, where
+$$
+A(\varrho) = \sum_{k=0}^{n(\varrho)} A_k(\varrho)
+$$
+with $n(\varrho) = \lceil \log_2(Md(\varrho)^\alpha) \rceil$.
+
 \end{thm}
 
 \section{Chapter3}\label{sec:chap3}
