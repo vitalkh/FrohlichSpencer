@@ -69,61 +69,132 @@
 \newcommand*{\mida}{d\mu_{\text{\tiny$\beta$}}(\phi)}
 \newcommand*{\midaLambda}{d\mu_{\text{\tiny$\beta, \Lambda$}}(\phi)}
 \newcommand*{\midar}{d\mu_\beta(\phi)}
+Let $\mathscr{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$.
 
 \subsection{Integer Valued Gaussian Measure}
 In this section we define explicitly the measure we use.
 First, let $\Lambda_0$ be some finite array of sites contained in the simple square lattice $\mathbb{Z}^2$. Denote by $\midaLambda$ the Gaussian measure
 $$
-\midaLambda = exp\Big[-\frac{1}{2\beta}<\phi, (-\Delta_\Lambda)\phi>\Big]d\phi(k_0)\prod_{k \in \Lambda}d\phi(k),
+\midaLambda = Z_{\beta, \Lambda}^{-1} \cdot exp\Big[-\frac{1}{2\beta}<\phi, (-\Delta_\Lambda)\phi>\Big]d\phi(k_0)\prod_{k \in \Lambda}d\phi(k),
 $$
 where:
 \begin{enumerate}
 \item $\beta > 0$.
-\item $\Lambda_0 \subseteq \Lambda \subset \mathbb{Z}^2$ is some finite square.
+\item $\Lambda_0 \subseteq \Lambda \subset \mathbb{Z}^2$ is some finite square region.
 \item $k_0 \in \Lambda$ and $d\phi(k_0)$ is the Lebesgue measure on $[-\pi,\pi)$. Note that $\midaLambda$ is independent of the choice of $k_0$.
 \item $d\phi(k)$ is the Lebesgue measure on $\mathbb{R}$ for any $k_0 \neq k \in \Lambda$.
-\item $\Delta_\Lambda$ is the graph Laplacian with two possible boundary conditions:
+\item $\Delta_\Lambda$ is a graph Laplacian with two possible boundary conditions:
 \begin{enumerate}
 \item Free boundary condition. The graph vertices are the sites in $\Lambda$, and the edges are only between sites $k_1, k_2 \in \Lambda$, with $dist(k_1, k_2) = 1$. In this case we assume that $dist(\Lambda_0, \partial\Lambda)$ is large compared to $diam(\Lambda_0)$ ($\partial\Lambda$ is the outer boundary of $\Lambda$). 
-\item Periodic boundary condition. In this case we assume $\Lambda = \Lambda_0$. The graph vertices are the sites in $\Lambda$, and the edges are between sites $k_1, k_2 \in \Lambda$, with $dist(k_1, k_2) = 1$, and between "periodic" neighbours.
+\item Periodic boundary condition. In this case we assume $\Lambda = \Lambda_0$. The graph vertices are the sites in $\Lambda$, and the edges are between sites $k_1, k_2 \in \Lambda$ with $dist(k_1, k_2) = 1$, and between "periodic" neighbours.
+%TODO write something about the definition of dist in this case?
 \end{enumerate}
+\item $Z_{\beta, \Lambda}$ is a normalization factor.
 \end{enumerate}
 \begin{remark}
-For notational simplicity, we denote $\mida = \midaLambda$, as $\Lambda, \Lambda_0$ are constant.
+For notational simplicity, we sometimes denote $\mida = \midaLambda$, as $\Lambda, \Lambda_0$ are always constant.
 \end{remark}
 
-\subsection{The Coulomb Gas}
+Now denote
+\begin{equation} \label{label:lambdahat}
+\hat{\lambda}_N(\phi) = 1 + \sum_{q=1}^N 2\lambda(q)cos(q\phi),
+\end{equation}
+for any $\lambda: \mathbb{N} \rightarrow \mathbb{R}$ satisfying \textit{Condition $\lambda$}:
+\begin{enumerate}
+\item $\lambda(q) = \lambda(-q)$.
+\item $\abs{\lambda(q)} \leq const \cdot exp[(\eta + \varepsilon\beta)], \varepsilon < 1/16$.
+\end{enumerate}
+Now define
+\begin{equation} \label{label:eq116}
+d\mu_\text{\tiny$\beta, N, \Lambda_0, \Lambda$}(\phi) = \prod_{j \in \Lambda_0} \hat{\lambda}_N(\phi(j))\midaLambda.
+\end{equation}
 
+\begin{remark}
+Taking for example $\lambda(q)=1$ for every $q \geq 1$, yields $\hat{\lambda}(\phi) = D_N(\phi)$, where $D_N$ is the Dirichlet kernel. Taking $N \rightarrow \infty$ yields 
+$$
+\hat{\lambda}_N(\phi) \rightarrow \sum_{k \in \mathbb{Z}} \delta_{2 \pi k} (\phi),
+$$
+so $d\mu_\text{\tiny$N$}$ is an approximation to the integer valued Gaussian measure.
+\end{remark}
 
+\subsection{Main Theorem}
 \begin{thm}
-This is a new thm.
+If $\lambda$ satisfies condition $\lambda$, then for $\beta$ sufficiently large, there exists a constant $c_1>0$ such that for $\phi(f) = \sum\phi(j)f(j)$
+$$
+\mathbb{E}\big[ (\phi(f))^2 \big] \geq c_1<f, -\Delta_\Lambda^{-1}f>
+$$
+where the expectation is due to the measure defined in \eqref{label:eq116}, and  $\sum_{j \in \Lambda} f(j) = 0$.
 \end{thm}
 
-\begin{thm}[brackets]
-This is a new thm.
-\end{thm}
-Proof: Done!
-
-Add $a$ squared and $b$ squared to get $c$ squared. Or, using a more mathematical approach 
-\begin{equation} 
-a^2 + b^2 = c^2 
-\end{equation} 
-Einstein says 
-\begin{equation} \label{clever}
-E = mc^2 
-\end{equation} 
-He didn’t say 
-\begin{equation} 
-1 + 1 = 3 \tag{dumb}
-\end{equation} 
-
-This is a reference to \eqref{clever}.
+\begin{remarks}
+\begin{enumerate}
+\item Note that with our choice of boundary conditions, $\Delta_\Lambda^{-1}$ is defined only on the linear space perpendicular to $f \equiv 1$.
+\item MAYBE ???????? we can use a different graph laplacian in the case of the free boundary conditions - for a subgraph of $\Lambda$ which includes $\Lambda_0$.
+%TODO verify
+\end{enumerate}
+\end{remarks}
 
 \section{Chapter2}\label{sec:chap2}
-Maybe a good title: State Representation as a Convex Combination 
 \newcommand*{\ens}{\mathscr{N}}
-Let $\mathscr{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$
+% Maybe a good title: State Representation as a Convex Combination  /// Representing $\hat{\lambda}$ as a convex combination of ensembles.
 
+Recall definition \eqref{label:lambdahat}.
+We choose a sequence $\{\xi_q\}_{q=1}^N$ of positive numbers with
+$$
+\sum_{q=1}^N \xi_q = 1, \ \ \ and \ \ \ \abs{\xi_q}^{-1} < const e^{\eta^\prime q^2}
+$$
+for some finite and positive $\eta^\prime$.
+\begin{remark}
+An explicit choice of $\{\xi_q\}_{q=1}^N$ is made later, in (???????????).
+%TODO
+\end{remark}
+
+We now get
+$$
+\hat{\lambda}_N(\phi) = \sum_{q=1}^N \xi_q(1 + z(q)cos(q\phi)),
+$$
+where $z(q) = 2 \xi_q^{-1} \lambda(q)$. Hence 
+$$
+\prod_{j \in \Lambda_0} \hat{\lambda}_N(\phi(j)) = \sum_{\vec{q}} \xi(\vec{q}) \prod_{j \in \Lambda_0} \big[ 1 + z(q_j)cos(q_j\phi(j)) \big],
+$$
+with
+$$
+\vec{q} = (q_j)_{j \in \Lambda_0}, \ \ \ \xi(\vec{q}) = \prod \xi_{q_j}.
+$$
+Note that $\sum_{\vec{q}} \xi(\vec{q}) = 1$.
+
+\subsection{Additional Notation}
+A \textit{charge density}, $\varrho$, is a function $\varrho:\Lambda \rightarrow \mathbb{Z}$. The diameter of the support of $\varrho$ is denoted by $d(\varrho)$, and $dist(\varrho_1, \varrho_2)$ is the minimal distance between the supports of the two charge densities $\varrho_1, \varrho_2$. An ensemble, $\mathscr{E}$, is a collection of charge densities, whose supports are mutually disjoint. 
+
+A charge density $\varrho_1$ is said to be \textit{compatible} with an ensemble $\mathscr{E}$ if
+$$
+\varrho_1 = \sum_{\varrho \in \mathscr{E}} \varepsilon(\varrho_1, \varrho)\varrho, \ \ \ \text{with} \ \ \ \varepsilon(\varrho_1, \varrho) \in \{0,1,-1\}.
+$$
+We say that an ensemble $\mathscr{E}_1$ is a \textit{parent} of an ensemble $\mathscr{E}_2$, $\mathscr{E}_1 \rightarrow \mathscr{E}_2$, iff every charge density $\varrho \in \mathscr{E}_2$ is compatible with $\mathscr{E}_1$. We say that a density $\varrho$ is a \textit{constituent} of a density $\varrho_1$, $\varrho \subset \varrho_1$, iff $supp\varrho \subset supp\varrho_1$, $\varrho(j) = \varrho_1(j)$ for all $j \in supp(\varrho)$.
+
+The \textit{total charge}, $Q(\varrho)$, of a density $\varrho$ is defined by
+$$
+Q(\varrho) = \sum_j\varrho(j).
+$$
+A density $\varrho$ is \textit{neutral} if $Q(\varrho)=0$; otherwise it is said to be \textit{charged}.
+
+We define an \textit{area} of a density $\varrho$ on various distance scales: Let $A_n(\varrho)$ be the minimal number of $2^n \times 2^n$ squares - i.e. squares with sides containing $2^n$ sites - needed to cover $supp\varrho$. Clearly $A_0(\varrho) = card(supp\varrho)$.
+
+An ensemble $\mathscr{E} = \mathscr{E}_n$ is said to be an \textit{n-ensemble} iff for all $\varrho_1, \varrho_2 \in \mathscr{E}_n$, $\varrho_1 \neq \varrho_2$,
+$$
+dist(\varrho_1, \varrho_2) > 2^n.
+$$
+
+\subsection{Main Result}
+\begin{thm}
+There exists a family $\mathscr{F}_{\vec{q}}$ of ensembles, $\ens$, such that
+\begin{equation}
+\prod_{j \in \Lambda_0} \big[ 1 + z(q_j)cos(q_j\phi(j)) \big] = 
+\sum_{\ens \in \mathscr{F}_{\vec{q}}} c_\ens^\prime \prod_{\varrho \in \ens} (1+K(\varrho)cos(\phi(\varrho)),
+\end{equation}
+where $c_\ens^\prime > 0$, $\sum_\ens c_\ens^\prime = 1$, and each $\ens \in \mathscr{F}_{\vec{q}}$ has the following properties:
+%TODO finish writing
+\end{thm}
 
 \section{Chapter3}\label{sec:chap3}
 \newcommand*{\SqrsSet}{\mathscr{S}_k(\varrho)}
@@ -334,7 +405,7 @@ Moreover, $\bar{\varrho}$ is a charge density which depends linearly on $\varrho
 \end{thm}
 \begin{remark}
 We will later see that we actually work with a stronger condition then condition (b) above,  which is $\bar{\varrho} \subset D(\varrho)$, where $D(\varrho)$ is defined later, in section (????????????????????).
-%TODO: add section
+%TODO add section
 \end{remark}
 
 \subsection{The Charged Density}
@@ -456,7 +527,7 @@ dist(supp\varrho, \partial D(\varrho)) = d(\varrho)
 $$
 where $\partial D(\varrho)$ is the outer boundary of $D(\varrho)$ [we can take for example $x(\varrho)$ to be one of the points which satisfy the minimum in $d(\varrho)$].\\
 Now let us fix a particular charge density $\varrho^* \in \ens$, with $Q(\varrho^*)=0$.
-%TODO: maybe we can stop caring here about the charge, as it must be 0 if we already eliminated the charged density
+%TODO maybe we can stop caring here about the charge, as it must be 0 if we already eliminated the charged density
 We define 
 $$
 \ens^* = \{\varrho: \varrho \in \ens, d(\varrho)\leq 2d(\varrho^*),\ \varrho \neq \varrho^*,\  Q(\varrho)=0\}
@@ -640,7 +711,7 @@ $$
 diam(D_i) \leq 5d(\varrho_i) \leq \frac{20}{M-20} R_1 < (R-1)R_1
 $$
 for $M$ large enough, and $R>\frac{\sqrt{2}}{1+1/4}$ (we could have taken any bound $> 1$ to $R$, but it has to be $> 1$, and this bound is a convenient bound, as we shall see later).
-%TODO: make sure to bound R from below. the bound doesn't have to be sqrt(2), but it has to be constant > 1. if not - this remark is false.
+%TODO make sure to bound R from below. the bound doesn't have to be sqrt(2), but it has to be constant > 1. if not - this remark is false.
 \item The choice of a(j) is such that the change of variable will be constant in $D(\varrho)$ for every $\varrho \neq \varrho^*$.\\
 \end{enumerate}
 \end{remarks}
@@ -728,7 +799,7 @@ $$
 \leq 2RR_1 + 48 d(\varrho^*)  \leq 56d(\varrho^*).
 $$
 Therefore, for $\alpha > 1$ and $M$ large enough $d=d(\varrho_i)$ holds. We then get from (iii) and (iv) that \eqref{label:eq448} holds.
-and %TODO: why??
+and %TODO why??
 $$
 \frac{M-24}{2}d(\varrho_i)^\alpha \leq RR_1.  
 $$
@@ -887,7 +958,7 @@ Now note that this iterative procedure clearly assigns every $s \in \SqrsSetTagO
 
 Doing the same for every $\varrho \in \ens$ yields the proof.
 \end{proof}
-%TODO: add here the figure from the original article
+%TODO add here the figure from the original article
 
 \section{Chap 5??????????????}
 \subsection{A Bound on $z(\beta, \varrho)$}
