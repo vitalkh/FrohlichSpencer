@@ -74,9 +74,9 @@ Let $\mathscr{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$.
 \subsection{Integer Valued Gaussian Measure}
 In this section we define explicitly the measure we use.
 First, let $\Lambda_0$ be some finite array of sites contained in the simple square lattice $\mathbb{Z}^2$. Denote by $\midaLambda$ the Gaussian measure
-$$
+\begin{equation} \label{label:mida}
 \midaLambda = Z_{\beta, \Lambda}^{-1} \cdot exp\Big[-\frac{1}{2\beta}<\phi, (-\Delta_\Lambda)\phi>\Big]d\phi(k_0)\prod_{k \in \Lambda}d\phi(k),
-$$
+\end{equation}
 where:
 \begin{enumerate}
 \item $\beta > 0$.
@@ -454,7 +454,83 @@ We will see later that we actually work with a stronger condition then condition
 %TODO add section
 \end{remark}
 
-\subsection{The Charged Density}
+
+\subsection{Renormalization of The Charged Density}
+\begin{lemma}
+For $\ens$ as in Theorem \eqref{thm:thm41}, 
+\begin{equation}
+\int\prod_{\varrho \in \ens}[1 + K(\varrho)cos(\phi(\varrho) + \sigma(\varrho))]\mida = 
+\int\prod_{\substack{\varrho \in \ens \\ Q(\varrho) = 0}}[1 + K(\varrho)cos(\phi(\varrho) + \sigma(\varrho))]\mida
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Let $\varrho_c \in \ens$ be the unique charged density in $\ens$ (if no such density, the lemma is trivial). Then
+$$
+\int\prod_{\varrho \in \ens}[1 + K(\varrho)cos(\phi(\varrho) + \sigma(\varrho))]\mida = 
+$$
+$$
+\int\prod_{\varrho_c \neq \varrho \in \ens}[1 + K(\varrho)cos(\phi(\varrho) + \sigma(\varrho))]\mida + 
+$$
+$$
++ \int K(\varrho_c)cos(\phi(\varrho_c) + \sigma(\varrho_c))\prod_{\varrho_c \neq \varrho \in \ens}[1 + K(\varrho)cos(\phi(\varrho) + \sigma(\varrho))]\mida.
+$$
+We prove that the second term equals $0$. To do that, we make a change of variables, from $\{\phi(k)\}_{k \in \Lambda}$ to $\{\phi(k)-\phi(j)\}_{\substack{\abs{k - j} = 1 \\ j,k \in \Lambda}} \cup \{\phi(k_0)\}$, where $k_0$ is as in \eqref{label:mida}. 
+
+With this change of variables, $\phi(\varrho)$ becomes
+$$
+\phi(\varrho)=\sum\varrho(j)\phi(j) = \sum_{j \in supp(\varrho)}\varrho(j) \cdot \big[\phi(j) - \phi(k_{j,1}) - \phi(k_{j,1}) + \phi(k_{j,2}) - \phi(k_{j,2}) + \ldots - \phi(k_{j,n(j)}) + \phi(k_{j,n(j)})\big] = 
+$$
+$$
+= \phi(k_0) Q(\varrho) + h(\varrho, \nabla\phi)
+$$
+where $\abs{k_{j,t} - k_{j,t+1}} = 1, k_{j,n(j)}=k_0$, and $h(\varrho, \nabla\phi)$ is some function which depends only on $\{\phi(k)-\phi(j)\}_{\substack{\abs{k - j} = 1 \\ j,k \in \Lambda}}$.
+Clearly, the term $<\phi, (-\Delta_\Lambda)\phi>$ of $\mida$ is independent of $\phi(k_0)$, after the change of variables.
+
+Therefore, the second term becomes
+$$
+\int \int_{-\pi}^{\pi} cos[\phi(k_0)Q(\varrho_c) + h_1(\nabla\phi) + \sigma(\varrho_c)] \cdot h_2(\nabla\phi) \cdot\abs{J}\cdot d\phi(k_0)d(\nabla\phi),
+$$
+where $h_1, h_2$ are some functions which depends only on $\{\phi(k)-\phi(j)\}_{\substack{\abs{k - j} = 1 \\ j,k \in \Lambda}}$ (and on $\ens$), and $J$ is the Jacobian matrix for the change of variables. Note that $J$ is an integer matrix, with values in $\{0,\pm 1\}$. Integrating on $k_0$ first, yields 0, and thus finishes the proof.
+\end{proof}
+
+\begin{remark}
+Due to this lemma, from now on we assume the densities we work with are neutral.
+\end{remark}
+
+
+\subsection{Useful Tool}
+\begin{lemma} \label{lemma:contour}
+\begin{equation}
+\int e^{i q x} I_\beta(x)dx = \int e^{i q (x+ia)} I_\beta(x+ia)dx
+\end{equation}
+where $I_\beta(x) = exp[-(\beta/2)x^2]$, $a\in \mathbb{R}$, and $dx$ is the Lebesgue measure on $\mathbb{R}$.
+\end{lemma}
+\begin{proof}
+Let $b \in (0,\infty)$. First note that 
+$$
+\abs{I_\beta(b+ix)} = \abs{exp(-(\beta/2) (b+ix)^2} = \abs{I_\beta(b)}exp[(\beta/2)x^2].
+$$
+By integrating on a closed contour, we obtain
+$$
+\int_{-b \rightarrow b} e^{i q \omega} I_\beta(\omega)d\omega =
+\int_{-b+ia \rightarrow b+ia} e^{i q \omega} I_\beta(\omega)d\omega + 
+$$
+\begin{equation} \label{label:contour}
+\int_{-b \rightarrow -b+ia} e^{i q \omega} I_\beta(\omega)d\omega +
+\int_{b+ia \rightarrow b} e^{i q \omega} I_\beta(\omega)d\omega.
+\end{equation}
+where we can bound the last two terms by
+$$
+\Bigg| \int_0^a e^{iq(b+ix)}I_\beta(b+ix)dx \Bigg| \leq 
+\int_0^a \Big| e^{iq(b+ix)}I_\beta(b+ix)\Big| dx \leq
+$$
+$$
+\leq max(1, e^{-qa}) I_\beta(b) \int_0^a exp[(\beta/2)x^2] \leq const(a)I_\beta(b)
+$$
+Therefore taking $b\rightarrow\infty$ in \eqref{label:contour} yields the lemma.
+\end{proof}
+
 
 \subsection{First Renormalization Step}
 
@@ -484,37 +560,6 @@ $$
 $$
 \end{prop}
 
-
-\begin{lemma} \label{lemma:contour}
-\begin{equation}
-\int e^{i q x} I_\beta(x)dx = \int e^{i q (x+ia)} I_\beta(x+ia)dx
-\end{equation}
-where $I_\beta(x) = exp[-(\beta/2)\phi^2]$, and $a\in \mathbb{R}$.
-\end{lemma}
-\begin{proof}
-Let $b \in (0,\infty)$. First note that 
-$$
-\abs{I_\beta(b+ix)} = \abs{exp(-(\beta/2) (b+ix)^2} = \abs{I_\beta(b)}exp[(\beta/2)x^2].
-$$
-By integrating on a closed contour, we obtain
-$$
-\int_{-b \rightarrow b} e^{i q \omega} I_\beta(\omega)d\omega =
-\int_{-b+ia \rightarrow b+ia} e^{i q \omega} I_\beta(\omega)d\omega + 
-$$
-\begin{equation} \label{label:contour}
-\int_{-b \rightarrow -b+ia} e^{i q \omega} I_\beta(\omega)d\omega +
-\int_{b+ia \rightarrow b} e^{i q \omega} I_\beta(\omega)d\omega.
-\end{equation}
-where we can bound the last two terms by
-$$
-\Bigg| \int_0^a e^{iq(b+ix)}I_\beta(b+ix)dx \Bigg| \leq 
-\int_0^a \Big| e^{iq(b+ix)}I_\beta(b+ix)\Big| dx \leq
-$$
-$$
-\leq max(1, e^{-qa}) I_\beta(b) \int_0^a exp[(\beta/2)x^2] \leq const(a)I_\beta(b)
-$$
-Therefore taking $b\rightarrow\infty$ in \eqref{label:contour} yields the lemma.
-\end{proof}
 
 \begin{lemma} \label{lemma:lem42}
 If $G(\phi)$ is a functional independent of $\phi(j_0)$ then
